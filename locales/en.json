@@ -1,5 +1,6 @@
 {
   "auth" : {
-    "login": "Login"
+    "login": "Login",
+    "register": "Sign up"
   }
 }
