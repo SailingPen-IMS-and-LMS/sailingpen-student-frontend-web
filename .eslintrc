@@ -4,6 +4,7 @@
     "@unocss"
   ],
   "rules": {
-    "vue/attribute-hyphenation": "off"
+    "vue/attribute-hyphenation": "off",
+    "vue/html-indent": "off"
   }
 }

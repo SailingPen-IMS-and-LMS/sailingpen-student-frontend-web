@@ -28,7 +28,7 @@ const terms = ref(false)
       >
     </div>
 
-    <div class="signup-page__right h-screen px-8 py-4" :style="{ overflowY: 'auto' }">
+    <div class="signup-page__right h-screen px-2 py-4 lg:px-8 md:px-4" :style="{ overflowY: 'auto' }">
       <form action="" class="shadow-6xl flex flex-col gap-4 rounded-lg rounded-lg p-4" @submit.prevent="">
         <h1 class="signup-message text-5xl">
           Let's get started !
@@ -135,8 +135,12 @@ const terms = ref(false)
 }
 
 .signup-page {
-  display:grid;
-  grid-template-columns: 45vw 55vw;
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @include mq(lg) {
+    grid-template-columns: 45vw 55vw;
+  }
 
   &__right {
     &::-webkit-scrollbar-track {
@@ -155,6 +159,13 @@ const terms = ref(false)
       -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
       background-color: var(--n-color-primary-200);
     }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .signup-page {
+    grid-template-columns: 45vw 55vw;
+
   }
 }
 </style>

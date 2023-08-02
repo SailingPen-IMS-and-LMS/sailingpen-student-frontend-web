@@ -12,7 +12,6 @@ import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import Unocss from 'unocss/vite'
 import VueMacros from 'unplugin-vue-macros/vite'
-import WebfontDownload from 'vite-plugin-webfont-dl'
 
 export default defineConfig({
   resolve: {
@@ -78,7 +77,7 @@ export default defineConfig({
     }),
 
     // https://github.com/feat-agency/vite-plugin-webfont-dl
-    WebfontDownload(['https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap', 'https://fonts.googleapis.com/css2?family=Norican&display=swap']),
+    // WebfontDownload(['https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap', 'https://fonts.googleapis.com/css2?family=Norican&display=swap']),
 
     // https://github.com/webfansplz/vite-plugin-vue-devtools
     VueDevTools(),
@@ -93,6 +92,14 @@ export default defineConfig({
     },
     onFinished() {
       generateSitemap()
+    },
+  },
+
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "~/styles/_mixins.scss";',
+      },
     },
   },
 })
