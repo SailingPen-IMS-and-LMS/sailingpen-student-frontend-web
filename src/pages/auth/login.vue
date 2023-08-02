@@ -14,7 +14,7 @@ const rememberMe = ref(false)
   <div class="flex">
     <div class="h-screen w-[45vw] flex items-center justify-center">
       <form action="" class="w-[450px] flex flex-col gap-4 rounded-lg p-4">
-        <h2 class="login-message">
+        <h2 class="login-message text-5xl">
           Welcome Back !
         </h2>
         <NInput
@@ -81,7 +81,7 @@ const rememberMe = ref(false)
 <style lang="scss" scoped>
 .login-message {
   font-family: 'Norican', cursive;
-  font-size: 2rem;
+  // font-size: 2rem;
   text-align: center;
 }
 

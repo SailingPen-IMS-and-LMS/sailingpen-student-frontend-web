@@ -1,0 +1,15 @@
+html{
+  --bg-primary: #FAFAFA;
+  --bg-secondary: #FFFFFF;
+  &.dark{
+    --bg-primary: #121212;
+    --bg-secondary: #242424;
+  }
+
+}
+
+// html.dark{
+//   --bg-primary: #121212;
+//   --bg-secondary: #242424;
+// }
+
