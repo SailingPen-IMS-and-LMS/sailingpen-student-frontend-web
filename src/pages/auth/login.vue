@@ -38,7 +38,7 @@ const rememberMe = ref(false)
             <NCheckbox
               id="remember-me"
               v-model="rememberMe"
-              ariaLabel="Remember me"
+              aria-label="Remember me"
               name="remember-me"
             />
             <label for="remember-me">Remember Me</label>

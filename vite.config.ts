@@ -9,9 +9,9 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
 import VueI18n from '@intlify/unplugin-vue-i18n/vite'
-import VueDevTools from 'vite-plugin-vue-devtools'
 import Unocss from 'unocss/vite'
 import VueMacros from 'unplugin-vue-macros/vite'
+import WebfontDownload from 'vite-plugin-webfont-dl'
 
 export default defineConfig({
   resolve: {
@@ -50,6 +50,7 @@ export default defineConfig({
       dirs: [
         'src/composables',
         'src/stores',
+        'src/types',
       ],
       vueTemplate: true,
     }),
@@ -60,7 +61,9 @@ export default defineConfig({
       include: [/\.vue$/, /\.vue\?vue/],
       dts: 'src/components.d.ts',
       resolvers: [
-        IconsResolver(),
+        IconsResolver({
+          prefix: false,
+        }),
       ],
     }),
 
@@ -77,10 +80,7 @@ export default defineConfig({
     }),
 
     // https://github.com/feat-agency/vite-plugin-webfont-dl
-    // WebfontDownload(['https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap', 'https://fonts.googleapis.com/css2?family=Norican&display=swap']),
-
-    // https://github.com/webfansplz/vite-plugin-vue-devtools
-    VueDevTools(),
+    WebfontDownload(['https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap', 'https://fonts.googleapis.com/css2?family=Norican&display=swap']),
   ],
 
   // https://github.com/antfu/vite-ssg

@@ -1,0 +1,86 @@
+.index-page {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "lesson-1"
+        "lesson-2"
+        "progresses"
+        "right-side"
+        "right-side"
+        "right-side";
+    gap: 1rem;
+    overflow-x: hidden;
+    background-color: blueviolet;
+
+    //
+    padding: 0 2rem;
+    overflow-y: auto;
+    height: calc(100vh - 60px);
+    align-items: center;
+    ///
+
+    @include mq(xl) {
+        grid-template-columns: 3fr 1fr;
+        grid-template-areas:
+            "lesson-1 right-side"
+            "lesson-2 right-side"
+            "progresses right-side";
+        gap: 1rem;
+        overflow-x: hidden;
+        background-color: blueviolet;
+    }
+}
+
+
+.top-left-container {
+    grid-area: lesson-1;
+    background-color: green;
+}
+
+.middle-left-container {
+    grid-area: lesson-2;
+    background-color: green;
+
+}
+
+.bottom-left-container {
+    grid-area: progresses;
+    background-color: blue;
+}
+
+.top-right-container {
+    grid-area: calendar;
+    margin-inline: 2rem;
+
+}
+
+.middle-right-container {
+    grid-area: events;
+    margin-block: 2rem;
+    margin-inline: 2rem;
+
+}
+
+.bottom-right-container {
+    grid-area: achievements;
+    margin-inline: 2rem;
+
+}
+
+.right-side-container {
+    grid-area: right-side;
+    background-color: red;
+}
+
+.right-container {
+    width: 280px;
+    // height: 250px;
+    background-color: var(--bg-primary);
+    border-radius: 8px;
+    grid-area: calendar;
+    padding: 1rem;
+}
+
+.progress-container {
+    background-color: var(--bg-primary);
+}
