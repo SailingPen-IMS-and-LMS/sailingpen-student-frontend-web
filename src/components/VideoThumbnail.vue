@@ -1,25 +1,21 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
-    <div class="video-thumbnail">
-        <p class="text-xs">
-            Unit - 6
-        </p>
-        <p>Trigonometric</p>
-        <p class="text-base">
-            Physics - Ruwan Darshana
-        </p>
-        <MaterialSymbolsPlayCircleOutline class="text-center text-4xl" />
-    </div>
+  <div class="video-thumbnail">
+    <p class="text-xs">
+      Unit - 6
+    </p>
+    <p>Trigonometric</p>
+    <p class="text-base">
+      Physics - Ruwan Darshana
+    </p>
+    <material-symbols-play-circle-outline class="text-center text-4xl" />
+  </div>
 </template>
 
 <style lang="scss" scoped>
 .video-thumbnail {
     width: 300px;
     height: 180px;
-    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../assets/images/video-1.jpg);
+    background-image: linear-gradient(to left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../assets/images/placeholders/video-1.jpg);
     background-repeat: no-repeat;
     border-radius: 8px;
     background-position: center;

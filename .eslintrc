@@ -1,10 +1,5 @@
 {
-  "extends": [
-    "@antfu",
-    "@unocss"
-  ],
-  "rules": {
-    "vue/attribute-hyphenation": "off",
-    "vue/html-indent": "off"
-  }
+    "extends": [
+        "@antfu"
+    ]
 }

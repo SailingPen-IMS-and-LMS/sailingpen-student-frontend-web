@@ -107,7 +107,7 @@ const terms = ref(false)
         </div>
 
         <div class="flex items-center gap-2 py-2">
-          <NCheckbox id="terms" v-model="terms" ariaLabel="terms" name="terms" />
+          <NCheckbox id="terms" v-model="terms" aria-label="terms" name="terms" />
           <label for="terms">I agree to all the <RouterLink to="#" class="text-blue-600">Terms & Privacy Policy
           </RouterLink></label>
         </div>
