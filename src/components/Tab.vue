@@ -4,7 +4,7 @@
 </script>
 
 <template>
-  <div class="tab" :class="(active == 'true') ? 'active' : ''" ref="tabs">
+  <div class="tab" :class="(active == 'true') ? 'active' : '' " ref="tabs">
     <slot></slot>
   </div>
 </template>

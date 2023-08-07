@@ -32,6 +32,7 @@ declare module 'vue' {
     SidebarLink: typeof import('./components/SidebarLink.vue')['default']
     Tab: typeof import('./components/Tab.vue')['default']
     Tabs: typeof import('./components/Tabs.vue')['default']
+    TabsWrapper: typeof import('./components/TabsWrapper.vue')['default']
     VideoThumbnail: typeof import('./components/VideoThumbnail.vue')['default']
   }
 }

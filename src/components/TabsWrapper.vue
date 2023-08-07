@@ -1,6 +1,8 @@
 <script setup>
   import { ref, onMounted, reactive } from 'vue';
+
   const props = defineProps([ 'customClass' ]);
+
   let tabContainer = ref(null);
   let tabHeaders = ref(null);
   let tabs = ref(null);
@@ -25,13 +27,16 @@
 </script>
 
 <template>
+    
   <div id="tabs-container" :class="customClass" ref="tabContainer">
     <div id="tab-headers">
       <ul>
+
         <!-- this shows all of the titles -->
         <li v-for="(tab, index) in tabs" :key="index" :class="activeTabIndex == index ? 'active' : ''" @click="changeTab(index)" ref="tabHeaders">{{ tab.title }}</li>
       </ul>
     </div>
+
     <!-- this is where the tabs go, in this slot -->
     <div id="active-tab">
     	<slot></slot>
@@ -53,7 +58,7 @@
     cursor: pointer;
   }
   #tab-headers ul li.active {
-    color: #008438;
+    color: var(--n-color-primary-400);
     font-weight: bold;
   }
 
@@ -64,7 +69,7 @@
     left: 0;
     height: 2px;
     width: 100%;
-    background: #008438;
+    background: var(--n-color-primary-400);
   }
   #active-tab, #tab-headers {
     width: 100%;
