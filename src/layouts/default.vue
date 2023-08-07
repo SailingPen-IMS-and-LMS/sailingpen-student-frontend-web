@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import DefaultHeader from '~/components/layout-components/DefaultHeader.vue'
+import DefaultMobileSidebar from '~/components/layout-components/DefaultMobileSidebar.vue'
+import DefaultPageContainer from '~/components/layout-components/DefaultPageContainer.vue'
+import DefaultSidebar from '~/components/layout-components/DefaultSidebar.vue'
 import type { SidebarItems } from '~/types'
 
 const sidebarLinks: SidebarItems = [
