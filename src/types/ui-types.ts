@@ -11,3 +11,12 @@ export interface EnrolledClassDetails {
   image: string
   id: number
 }
+
+export interface ResourceInfoCard{
+    id: number
+    title: string
+    image: string
+    description: string
+    date: string
+    // attachments: string[]
+}

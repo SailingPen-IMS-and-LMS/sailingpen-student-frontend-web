@@ -10,7 +10,8 @@ defineProps<EnrolledClassProps>()
 </script>
 
 <template>
-  <div class="enrolled-class flex items-center gap-4 rounded-lg bg-[var(--bg-primary)] " style="box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);">
+  <div class="enrolled-class flex items-center gap-4 rounded-lg bg-[var(--bg-primary)] "
+  style="box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);">
     <div
       :style="{
         backgroundImage: `url(${details.image})`,
