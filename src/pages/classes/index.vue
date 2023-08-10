@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import EnrolledClass from '~/components/EnrolledClass.vue'
 import TutorInfoCard from '~/components/TutorInfoCard.vue'
+import PageHeading from '~/components/common/PageHeading.vue'
 import type { EnrolledClassDetails } from '~/types'
 
 const enrolledClasses: EnrolledClassDetails[] = [
@@ -20,9 +21,11 @@ const tutorInfoCards: EnrolledClassDetails[] = [
 
 <template>
   <div class="classes-page">
-    <h1 class="text-2xl font-semibold">
+
+    <PageHeading>
       Enrolled classes
-    </h1>
+    </PageHeading>
+
     <div class="enrolled-classes">
       <EnrolledClass v-for="enrolledClass in enrolledClasses" :key="enrolledClass.id" :details="enrolledClass" />
     </div>
