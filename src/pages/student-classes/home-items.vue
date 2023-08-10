@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ResourceInfoCard } from '~/types';
+import  ResourceCard  from '~/components/ResourceCard.vue';
 // import { NInput } from '@nethren-ui/vue';
 import { ref } from 'vue'
 import '~/components/ResourceCard.vue';
@@ -7,6 +8,7 @@ import '~/components/ResourceCard.vue';
 const startDate = ref('');
 const endDate = ref('');
 
+//set dates initially
 onMounted(() => {
   const today = new Date();
   const sevenDaysAgo = new Date();
@@ -29,7 +31,8 @@ const resourceInfoCards: ResourceInfoCard[] = [
     <h1>this is home for student class</h1>
 
     <div class="class-home ">
-        <div class="date-picker flex flex-row">
+        <!-- date filter -->
+        <div class="date-filter flex flex-row">
             <label for="from-date">From : </label>
             <input type="date" v-model="startDate"
                 class="" />
@@ -37,6 +40,16 @@ const resourceInfoCards: ResourceInfoCard[] = [
             <input type="date" v-model="endDate" label ="to-date"
                 class="" />
         </div>
+
+        <div class="resource-cards">
+            <ResourceCard v-for="resourceInfoCard in resourceInfoCards"
+                :key="resourceInfoCard.id"
+                :details="resourceInfoCard" />
+        </div>
+
+
+
+        <!-- resource cards -->
     </div>
 </template>
 

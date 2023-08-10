@@ -28,7 +28,9 @@ defineProps<EnrolledClassProps>()
         <h3 class="">
           {{ details.name }}
         </h3>
-        <span class="text-[0.9rem] font-[300]">{{ details.subject }}</span>
+        <span class="text-[0.9rem] font-[300]">
+            {{ details.subject }}
+        </span>
       </div>
       <NButton mode="outline" class="mt-4">
         Go to class
