@@ -60,3 +60,17 @@ export interface VideoQuestionDetails {
   question: string
 
 }
+
+export interface OtherVideosDetails {
+  image: string
+  videoName: string
+  time: string
+  date: string
+}
+
+export interface BrowseLessonPacksDetails {
+  image: string
+  name: string
+  month: string
+  price: string
+}

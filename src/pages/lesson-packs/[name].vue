@@ -2,6 +2,7 @@
 import PageHeading from '~/components/common/PageHeading.vue'
 import Attachment from '~/components/attachment.vue'
 import VideoQuestion from '~/components/VideoQuestion.vue'
+import OtherVideo from '~/components/OtherVideo.vue'
 
 const route = useRoute()
 </script>
@@ -39,7 +40,7 @@ const route = useRoute()
         </div>
 
         <p class="text-l font-semibold">
-          The notes relevant to the lecture
+          The notes relevant to the lesson
         </p>
         <div class="lecture-notes my-4 ">
           <Attachment
@@ -52,12 +53,15 @@ const route = useRoute()
         <p class="text-justify">
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
           standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-          a type specimen book. It has
+          a type specimen book.
         </p>
 
         <div class="flex gap-4">
           <img src="/student-profile.jpg" class="user-profile mt-4" alt="">
-          <input type="text" placeholder="Ask a question">
+          <div class="flex justify-between items-center w-[100%]">
+            <input type="text" placeholder="Ask a question">
+            <zondicons-send class="" />
+          </div>
         </div>
 
         <hr style="width:100%; margin-block: 0.5rem;">
@@ -78,7 +82,26 @@ const route = useRoute()
       </div>
 
       <div class="other-videos">
-        <h3>hsjhdsj</h3>
+        <h3 class="text-l font-semibold mb-4">
+          Watch next lessons
+        </h3>
+        <div>
+          <OtherVideo
+            :details="{ image: '/video-2.jpg', videoName: 'Differentiation Graphs - Part 1', time: '2:45:33', date: '2023/05/23' }"
+          />
+          <OtherVideo
+            :details="{ image: '/video-3.jpg', videoName: 'Differentiation Graphs - Part 2', time: '2:45:33', date: '2023/05/23' }"
+          />
+          <OtherVideo
+            :details="{ image: '/video-4.jpg', videoName: 'Calculus - Part 1', time: '2:45:33', date: '2023/05/23' }"
+          />
+          <OtherVideo
+            :details="{ image: '/video-5.jpg', videoName: 'Calculus - Part 2', time: '2:45:33', date: '2023/05/23' }"
+          />
+          <OtherVideo
+            :details="{ image: '/video-6.jpg', videoName: 'Integration', time: '2:45:33', date: '2023/05/23' }"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -93,8 +116,11 @@ const route = useRoute()
         margin-block: 2rem;
         grid-template-areas:
             'video other-video'
-            'video-info other-video'
+            'video-info other-video';
 
+            @include mq(md){
+
+            }
     }
 
     .player{

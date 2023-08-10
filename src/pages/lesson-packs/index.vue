@@ -45,7 +45,9 @@ const myLessonPacks: LessonPacks = {
       <PageHeading>
         My Lesson Packs
       </PageHeading>
+
       <NButton mode="outline">
+        <RouterLink to="/lesson-packs/store" />
         Browse Lesson Packs
       </NButton>
     </div>
