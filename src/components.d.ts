@@ -8,6 +8,8 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Attachment: typeof import('./components/Attachment.vue')['default']
+    BrowseLessonPack: typeof import('./components/BrowseLessonPack.vue')['default']
+    BrowseLessonPacks: typeof import('./components/BrowseLessonPacks.vue')['default']
     Fa6SolidUsersLine: typeof import('~icons/fa6-solid/users-line')['default']
     HealthiconsIExamMultipleChoiceNegative: typeof import('~icons/healthicons/i-exam-multiple-choice-negative')['default']
     IconamoonMenuBurgerHorizontalBold: typeof import('~icons/iconamoon/menu-burger-horizontal-bold')['default']
@@ -23,6 +25,8 @@ declare module 'vue' {
     MaterialSymbolsTrophy: typeof import('~icons/material-symbols/trophy')['default']
     MdiCards: typeof import('~icons/mdi/cards')['default']
     MdiHelpCircle: typeof import('~icons/mdi/help-circle')['default']
+    OtherVideo: typeof import('./components/OtherVideo.vue')['default']
+    OtherVideos: typeof import('./components/OtherVideos.vue')['default']
     PageHeading: typeof import('./components/common/PageHeading.vue')['default']
     PhSignOutBold: typeof import('~icons/ph/sign-out-bold')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
@@ -30,5 +34,6 @@ declare module 'vue' {
     Tab: typeof import('./components/Tab.vue')['default']
     TabsWrapper: typeof import('./components/TabsWrapper.vue')['default']
     VideoQuestion: typeof import('./components/VideoQuestion.vue')['default']
+    ZondiconsSend: typeof import('~icons/zondicons/send')['default']
   }
 }
