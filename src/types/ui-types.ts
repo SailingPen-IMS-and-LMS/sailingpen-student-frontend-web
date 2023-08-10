@@ -11,3 +11,11 @@ export interface EnrolledClassDetails {
   image: string
   id: number
 }
+
+export interface MyLessonPacksDetails {
+  name: string
+  time: string
+  image: string
+  id: number
+
+}
