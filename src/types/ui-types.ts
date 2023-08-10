@@ -18,5 +18,6 @@ export interface ResourceInfoCard{
     image: string
     description: string
     date: string
-    // attachments: string[]
+    //obj array call attachments and it has id and link
+    attachments: {id: number, link: string, text:string}[]
 }
