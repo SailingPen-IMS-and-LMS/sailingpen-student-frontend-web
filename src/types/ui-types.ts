@@ -19,3 +19,25 @@ export interface MyLessonPacksDetails {
   id: number
 
 }
+
+export interface LessonPacks {
+  [key: number | string]: {
+    tutorName: string
+    className: string
+    lessonPacks: MyLessonPacksDetails[]
+  }
+}
+
+export interface AttachmentDetails {
+  attachmentName: string
+  tutorialNumber: number
+  image: string
+}
+
+export interface VideoQuestionDetails {
+  userProfile: string
+  studentName: string
+  time: string
+  question: string
+
+}
