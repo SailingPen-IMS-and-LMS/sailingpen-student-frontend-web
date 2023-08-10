@@ -21,9 +21,11 @@ const tutorInfoCards: EnrolledClassDetails[] = [
 
 <template>
   <div class="classes-page">
+
     <PageHeading>
       Enrolled classes
     </PageHeading>
+
     <div class="enrolled-classes">
       <EnrolledClass v-for="enrolledClass in enrolledClasses" :key="enrolledClass.id" :details="enrolledClass" />
     </div>
