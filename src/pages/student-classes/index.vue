@@ -1,5 +1,5 @@
 <script setup>
-  import { createApp } from 'vue'
+    // import { createApp } from 'vue'
 	import Tabs from '../../components/TabsWrapper.vue'
 	import Tab from '../../components/Tab.vue'
 </script>
