@@ -79,9 +79,8 @@ const resourceInfoCards: ResourceInfoCard[] = [
 </script>
 
 <template>
-    <h1>this is home for student class</h1>
 
-    <div class="class-home ">
+    <div class="class-home mt-10">
         <!-- date filter -->
         <div class="date-filter flex flex-row">
             <label for="from-date">From : </label>

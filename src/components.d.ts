@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AnnouncementCard: typeof import('./components/AnnouncementCard.vue')['default']
     DefaultHeader: typeof import('./components/layout-components/DefaultHeader.vue')['default']
     DefaultMobileSidebar: typeof import('./components/layout-components/DefaultMobileSidebar.vue')['default']
     DefaultPageContainer: typeof import('./components/layout-components/DefaultPageContainer.vue')['default']

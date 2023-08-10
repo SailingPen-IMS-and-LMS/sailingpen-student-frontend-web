@@ -21,3 +21,11 @@ export interface ResourceInfoCard{
     //obj array call attachments and it has id and link
     attachments: {id: number, link: string, text:string}[]
 }
+
+export interface AnnouncementCard{
+    id: number
+    title: string
+    description: string
+    date_time: string
+    is_pinned: boolean
+}

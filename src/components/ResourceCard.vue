@@ -17,7 +17,7 @@ interface ResourceCardProps {
                 {{ details.date }}
         </h3>
 
-        <div class="resource-tum-content gap-4 rounded-lg px-3"
+        <div class="resource-tum-content gap-4 rounded-lg px-3 mr-10"
         style="box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.045);">
 
         <div class="flex">
@@ -53,14 +53,14 @@ interface ResourceCardProps {
                 @ Attachments
             </h2>
                 <div class="attachments-container mt-4 flex gap-5 ">
-                <span class="items-center justify-center " v-for="attachment in details.attachments" :key="attachment.id">
-                    <!-- <a :href="attachment.link" target="_blank" class="attachment-link"> -->
-                        <img src="../assets/images/pdf-icon.png"
-                            alt="PDF Icon"
-                            class="pdf-icon w-[40px] h-[50px]" />
-                        <span class="attachment-text">{{ attachment.text }}</span>
-                    <!-- </a> -->
-                </span>
+                    <span class="items-center justify-center pb-10 pl-5" v-for="attachment in details.attachments" :key="attachment.id">
+                        <!-- <a :href="attachment.link" target="_blank" class="attachment-link"> -->
+                            <img src="../assets/images/pdf-icon.png"
+                                alt="PDF Icon"
+                                class="pdf-icon w-[40px] h-[50px]" />
+                            <span class="attachment-text">{{ attachment.text }}</span>
+                        <!-- </a> -->
+                    </span>
                 </div>
 
         </div>
