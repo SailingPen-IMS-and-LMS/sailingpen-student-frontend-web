@@ -7,13 +7,12 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    EnrolledClass: typeof import('./components/EnrolledClass.vue')['default']
+    Attachment: typeof import('./components/Attachment.vue')['default']
     Fa6SolidUsersLine: typeof import('~icons/fa6-solid/users-line')['default']
     HealthiconsIExamMultipleChoiceNegative: typeof import('~icons/healthicons/i-exam-multiple-choice-negative')['default']
     IconamoonMenuBurgerHorizontalBold: typeof import('~icons/iconamoon/menu-burger-horizontal-bold')['default']
     IcRoundDashboard: typeof import('~icons/ic/round-dashboard')['default']
     IcSharpMenuBook: typeof import('~icons/ic/sharp-menu-book')['default']
-    LessonPack: typeof import('./components/LessonPack.vue')['default']
     MakiCross: typeof import('~icons/maki/cross')['default']
     MaterialSymbolsDashboard: typeof import('~icons/material-symbols/dashboard')['default']
     MaterialSymbolsEditDocumentRounded: typeof import('~icons/material-symbols/edit-document-rounded')['default']
@@ -24,16 +23,12 @@ declare module 'vue' {
     MaterialSymbolsTrophy: typeof import('~icons/material-symbols/trophy')['default']
     MdiCards: typeof import('~icons/mdi/cards')['default']
     MdiHelpCircle: typeof import('~icons/mdi/help-circle')['default']
-    MyLessonPacks: typeof import('./components/MyLessonPacks.vue')['default']
+    PageHeading: typeof import('./components/common/PageHeading.vue')['default']
     PhSignOutBold: typeof import('~icons/ph/sign-out-bold')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    TutorInfoCard: typeof import('./components/TutorInfoCard.vue')['default']
-    SidebarLink: typeof import('./components/SidebarLink.vue')['default']
     Tab: typeof import('./components/Tab.vue')['default']
-    Tabs: typeof import('./components/Tabs.vue')['default']
     TabsWrapper: typeof import('./components/TabsWrapper.vue')['default']
-    VideoThumbnail: typeof import('./components/VideoThumbnail.vue')['default']
-
+    VideoQuestion: typeof import('./components/VideoQuestion.vue')['default']
   }
 }
