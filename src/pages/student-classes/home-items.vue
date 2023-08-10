@@ -20,9 +20,9 @@ onMounted(() => {
 
 
 const resourceInfoCards: ResourceInfoCard[] = [
-    { id: 1, title: 'Day one', image: '/resource-vid-thumb.jpg', description: 'Combined Mathematics', date: "2023-3-10" },
-    { id: 2, title: 'Day two', image: '/resource-vid-thumb.jpg', description: 'Physics', date: "2023-3-10" },
-    { id: 3, title: 'Day three', image: '/resource-vid-thumb.jpg', description: 'Chemistry', date: "2023-3-10" },
+    { id: 1, title: 'Introduction to Permutations and Combinations Recording ', image: '/resource-vid-thumb.jpg', description: 'Introduction to Permutations and Combinations Recording" provides a concise overview of the fundamental concepts of permutations and combinations. This recording offers a beginner-friendly introduction to these mathematical principles, explaining their significance and applications in various fields', date: "2023-3-10" },
+    { id: 2, title: 'Introduction to Permutations and Combinations Recording ', image: '/resource-vid-thumb.jpg', description: 'Introduction to Permutations and Combinations Recording" provides a concise overview of the fundamental concepts of permutations and combinations. This recording offers a beginner-friendly introduction to these mathematical principles, explaining their significance and applications in various fields', date: "2023-3-10" },
+    { id: 3, title: 'Introduction to Permutations and Combinations Recording ', image: '/resource-vid-thumb.jpg', description: 'Introduction to Permutations and Combinations Recording" provides a concise overview of the fundamental concepts of permutations and combinations. This recording offers a beginner-friendly introduction to these mathematical principles, explaining their significance and applications in various fields', date: "2023-3-10" },
 
 ]
 </script>

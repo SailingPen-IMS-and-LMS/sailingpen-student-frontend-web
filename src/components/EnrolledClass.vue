@@ -20,7 +20,7 @@ defineProps<EnrolledClassProps>()
         backgroundPosition: 'center',
         borderRadius: '0.5rem 0 0 0.5rem',
       }"
-      class="w-[150px] h-[150px]"
+      class="w-150px h-150px"
     />
     <!-- <img :src="details.image" :alt="`${details.name}'s Photo'`" class="w-[150px] rounded-lg"> -->
     <div class="mr-4">
