@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import VideoThumbnail from '~/components/VideoThumbnail.vue'
+</script>
+
 <template>
   <div class="index-page">
     <div class="top-left-container">

@@ -7,10 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    DefaultHeader: typeof import('./components/layout-components/DefaultHeader.vue')['default']
-    DefaultMobileSidebar: typeof import('./components/layout-components/DefaultMobileSidebar.vue')['default']
-    DefaultPageContainer: typeof import('./components/layout-components/DefaultPageContainer.vue')['default']
-    DefaultSidebar: typeof import('./components/layout-components/DefaultSidebar.vue')['default']
+    EnrolledClass: typeof import('./components/EnrolledClass.vue')['default']
     Fa6SolidUsersLine: typeof import('~icons/fa6-solid/users-line')['default']
     HealthiconsIExamMultipleChoiceNegative: typeof import('~icons/healthicons/i-exam-multiple-choice-negative')['default']
     IconamoonMenuBurgerHorizontalBold: typeof import('~icons/iconamoon/menu-burger-horizontal-bold')['default']
@@ -34,5 +31,6 @@ declare module 'vue' {
     Tabs: typeof import('./components/Tabs.vue')['default']
     TabsWrapper: typeof import('./components/TabsWrapper.vue')['default']
     VideoThumbnail: typeof import('./components/VideoThumbnail.vue')['default']
+    TutorInfoCard: typeof import('./components/TutorInfoCard.vue')['default']
   }
 }

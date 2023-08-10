@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import SidebarLink from '../SidebarLink.vue'
+import { useMobileSidebar } from '~/composables'
 import logoImgUrl from '~/assets/images/logo.png'
 import type { SidebarItems } from '~/types'
 

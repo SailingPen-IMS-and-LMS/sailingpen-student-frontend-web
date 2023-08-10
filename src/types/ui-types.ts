@@ -4,3 +4,10 @@ export interface SidebarItem {
 }
 
 export type SidebarItems = SidebarItem[]
+
+export interface EnrolledClassDetails {
+  name: string
+  subject: string
+  image: string
+  id: number
+}
