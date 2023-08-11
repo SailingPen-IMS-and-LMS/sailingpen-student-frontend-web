@@ -10,7 +10,10 @@ defineProps<EnrolledClassProps>()
 </script>
 
 <template>
-  <div class="enrolled-class flex items-center gap-4 rounded-lg bg-[var(--bg-primary)] " style="box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);">
+
+  <div class="enrolled-class flex items-center gap-4 rounded-lg bg-[var(--bg-primary)] "
+  style="box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);">
+
     <div
       :style="{
         backgroundImage: `url(${details.image})`,
@@ -19,7 +22,9 @@ defineProps<EnrolledClassProps>()
         backgroundPosition: 'center',
         borderRadius: '0.5rem 0 0 0.5rem',
       }"
+
       class="w-[150px] h-[150px]"
+
     />
     <!-- <img :src="details.image" :alt="`${details.name}'s Photo'`" class="w-[150px] rounded-lg"> -->
     <div class="mr-4">
@@ -27,7 +32,11 @@ defineProps<EnrolledClassProps>()
         <h3 class="">
           {{ details.name }}
         </h3>
-        <span class="text-[0.9rem] font-[300]">{{ details.subject }}</span>
+
+        <span class="text-[0.9rem] font-[300]">
+            {{ details.subject }}
+        </span>
+
       </div>
       <NButton mode="outline" class="mt-4">
         Go to class
