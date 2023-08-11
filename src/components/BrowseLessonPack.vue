@@ -10,7 +10,7 @@ defineProps<BrowseLessonPacksProps>()
 </script>
 
 <template>
-  <div class="w-100 bg-[var(--bg-primary)] rounded-xl mb-6">
+  <div class="w-100 bg-[var(--bg-primary)] rounded-xl mb-6 shadow-md">
     <img :src="details.image" alt="" class="aspect-[21/9] w-full object-cover" style="border-radius: 0.75rem 0.75rem 0 0;">
     <p class="font-semibold mx-4 mt-4">
       {{ details.name }} - {{ details.month }}

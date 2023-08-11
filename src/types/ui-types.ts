@@ -55,3 +55,9 @@ export interface BrowseLessonPacksDetails {
   month: string
   price: string
 }
+
+export interface FlashcardDetails {
+  image: string
+  name: string
+  description: string
+}
