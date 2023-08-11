@@ -27,7 +27,7 @@
 </script>
 
 <template>
-    
+
   <div id="tabs-container" :class="customClass" ref="tabContainer">
     <div id="tab-headers">
       <ul>

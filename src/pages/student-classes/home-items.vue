@@ -3,7 +3,7 @@ import type { ResourceInfoCard } from '~/types';
 import  ResourceCard  from '~/components/ResourceCard.vue';
 // import { NInput } from '@nethren-ui/vue';
 import { ref } from 'vue'
-import '~/components/ResourceCard.vue';
+
 
 const startDate = ref('');
 const endDate = ref('');
