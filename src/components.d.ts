@@ -33,6 +33,8 @@ declare module 'vue' {
     PageHeading: typeof import('./components/common/PageHeading.vue')['default']
     PhSignOutBold: typeof import('~icons/ph/sign-out-bold')['default']
     ResourceCard: typeof import('./components/ResourceCard.vue')['default']
+    RiPushpinFill: typeof import('~icons/ri/pushpin-fill')['default']
+    RiushpinFill: typeof import('~icons/ri/ushpin-fill')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SidebarLink: typeof import('./components/SidebarLink.vue')['default']
