@@ -23,7 +23,7 @@ export interface ResourceInfoCard{
     attachments: {id: number, link: string, text:string}[]
 }
 
-export interface AnnouncementCard{
+export interface AnnouncementInfoCard {
     id: number
     title: string
     description: string
