@@ -10,7 +10,7 @@ interface ResourceCardProps {
 </script>
 
 <template>
-    <div class="resource-info-card rounded-lg mb-10"
+    <div class="resource-info-card mb-10"
     >
 
         <h3 class="resource-date my-2  font-semibold">
