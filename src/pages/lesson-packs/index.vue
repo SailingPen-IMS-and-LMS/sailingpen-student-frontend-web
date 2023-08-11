@@ -47,8 +47,9 @@ const myLessonPacks: LessonPacks = {
       </PageHeading>
 
       <NButton mode="outline">
-        <RouterLink to="/lesson-packs/store" />
-        Browse Lesson Packs
+        <RouterLink to="/lesson-packs/store">
+          Browse Lesson Packs
+        </RouterLink>
       </NButton>
     </div>
     <div v-for="lp in myLessonPacks" :key="lp.tutorName">
