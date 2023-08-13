@@ -10,6 +10,7 @@ declare module 'vue' {
     AnnouncementCard: typeof import('./components/AnnouncementCard.vue')['default']
     Attachment: typeof import('./components/Attachment.vue')['default']
     BrowseLessonPack: typeof import('./components/BrowseLessonPack.vue')['default']
+    Cell: typeof import('./components/editable-table/Cell.vue')['default']
     DefaultHeader: typeof import('./components/layout-components/DefaultHeader.vue')['default']
     DefaultMobileSidebar: typeof import('./components/layout-components/DefaultMobileSidebar.vue')['default']
     DefaultPageContainer: typeof import('./components/layout-components/DefaultPageContainer.vue')['default']
