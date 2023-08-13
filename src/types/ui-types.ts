@@ -12,23 +12,22 @@ export interface EnrolledClassDetails {
   id: number
 }
 
-
-export interface ResourceInfoCard{
-    id: number
-    title: string
-    image: string
-    description: string
-    date: string
-    //obj array call attachments and it has id and link
-    attachments: {id: number, link: string, text:string}[]
+export interface ResourceInfoCard {
+  id: number
+  title: string
+  image: string
+  description: string
+  date: string
+  // obj array call attachments and it has id and link
+  attachments: { id: number; link: string; text: string }[]
 }
 
-export interface AnnouncementCard{
-    id: number
-    title: string
-    description: string
-    date_time: string
-    is_pinned: boolean
+export interface AnnouncementCard {
+  id: number
+  title: string
+  description: string
+  date_time: string
+  is_pinned: boolean
 }
 
 export interface MyLessonPacksDetails {
@@ -79,4 +78,34 @@ export interface FlashcardDetails {
   image: string
   name: string
   description: string
+}
+
+export interface ExamFirstPlacesDetails {
+  image: string
+  name: string
+  place: number
+  school: string
+}
+
+export interface ExamLeaderBoardDetails {
+  place: number
+  indexNumber: string
+  profilePicture: string
+  name: string
+  school: string
+  marks: string
+}
+
+export interface QuizDetails {
+  quizNumber: number
+  name: string
+  description: string
+}
+
+export interface QuizLeaderBoardDetails {
+  place: number
+  indexNumber: string
+  profilePicture: string
+  name: string
+  marks: string
 }
