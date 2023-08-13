@@ -21,7 +21,6 @@ const tutorInfoCards: EnrolledClassDetails[] = [
 
 <template>
   <div class="classes-page">
-
     <PageHeading>
       Enrolled classes
     </PageHeading>
