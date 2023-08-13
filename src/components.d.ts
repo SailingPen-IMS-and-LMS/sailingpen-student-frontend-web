@@ -7,6 +7,15 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AnnouncementCard: typeof import('./components/AnnouncementCard.vue')['default']
+    Attachment: typeof import('./components/Attachment.vue')['default']
+    BrowseLessonPack: typeof import('./components/BrowseLessonPack.vue')['default']
+    Cell: typeof import('./components/editable-table/Cell.vue')['default']
+    DefaultHeader: typeof import('./components/layout-components/DefaultHeader.vue')['default']
+    DefaultMobileSidebar: typeof import('./components/layout-components/DefaultMobileSidebar.vue')['default']
+    DefaultPageContainer: typeof import('./components/layout-components/DefaultPageContainer.vue')['default']
+    DefaultSidebar: typeof import('./components/layout-components/DefaultSidebar.vue')['default']
+    EnrolledClass: typeof import('./components/EnrolledClass.vue')['default']
     Fa6SolidUsersLine: typeof import('~icons/fa6-solid/users-line')['default']
     HealthiconsIExamMultipleChoiceNegative: typeof import('~icons/healthicons/i-exam-multiple-choice-negative')['default']
     IcBaselinePlus: typeof import('~icons/ic/baseline-plus')['default']
@@ -14,6 +23,7 @@ declare module 'vue' {
     IcRoundDashboard: typeof import('~icons/ic/round-dashboard')['default']
     IcSharpMenuBook: typeof import('~icons/ic/sharp-menu-book')['default']
     LeaderBoard: typeof import('./components/LeaderBoard.vue')['default']
+    LessonPack: typeof import('./components/LessonPack.vue')['default']
     MakiCross: typeof import('~icons/maki/cross')['default']
     MaterialSymbolsDashboard: typeof import('~icons/material-symbols/dashboard')['default']
     MaterialSymbolsEditDocumentRounded: typeof import('~icons/material-symbols/edit-document-rounded')['default']
@@ -25,11 +35,21 @@ declare module 'vue' {
     MdiCards: typeof import('~icons/mdi/cards')['default']
     MdiHeadQuestion: typeof import('~icons/mdi/head-question')['default']
     MdiHelpCircle: typeof import('~icons/mdi/help-circle')['default']
+    OtherVideo: typeof import('./components/OtherVideo.vue')['default']
+    PageHeading: typeof import('./components/common/PageHeading.vue')['default']
     PhSignOutBold: typeof import('~icons/ph/sign-out-bold')['default']
     Quiz: typeof import('./components/Quiz.vue')['default']
     QuizLeaderBoard: typeof import('./components/QuizLeaderBoard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+
     ZondiconsSend: typeof import('~icons/zondicons/send')['default']
+    SidebarLink: typeof import('./components/SidebarLink.vue')['default']
+    Tab: typeof import('./components/Tab.vue')['default']
+    TabsWrapper: typeof import('./components/TabsWrapper.vue')['default']
+    TutorInfoCard: typeof import('./components/TutorInfoCard.vue')['default']
+    VideoQuestion: typeof import('./components/VideoQuestion.vue')['default']
+    VideoThumbnail: typeof import('./components/VideoThumbnail.vue')['default']
+
   }
 }

@@ -30,6 +30,15 @@ export interface AnnouncementCard {
   is_pinned: boolean
 }
 
+export interface AnnouncementInfoCard {
+    id: number
+    title: string
+    description: string
+    date_time: string
+    is_pinned: boolean
+
+}
+
 export interface MyLessonPacksDetails {
   name: string
   time: string
