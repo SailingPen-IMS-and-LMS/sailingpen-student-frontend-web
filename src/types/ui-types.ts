@@ -31,11 +31,11 @@ export interface AnnouncementCard {
 }
 
 export interface AnnouncementInfoCard {
-    id: number
-    title: string
-    description: string
-    date_time: string
-    is_pinned: boolean
+  id: number
+  title: string
+  description: string
+  date_time: string
+  is_pinned: boolean
 
 }
 
