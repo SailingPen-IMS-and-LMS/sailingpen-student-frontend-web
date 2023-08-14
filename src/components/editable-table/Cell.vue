@@ -4,7 +4,7 @@ import { cells } from './store.js'
 
 const props = defineProps({
   c: Number,
-  r: Number
+  r: Number,
 })
 
 const editing = ref(false)
@@ -46,4 +46,3 @@ function update(e) {
 
 }
 </style>
-

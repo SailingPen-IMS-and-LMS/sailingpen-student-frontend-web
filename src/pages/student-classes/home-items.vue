@@ -6,8 +6,6 @@ import ResourceCard from '~/components/ResourceCard.vue'
 
 // import { NInput } from '@nethren-ui/vue';
 
-
-
 const startDate = ref('')
 const endDate = ref('')
 

@@ -20,7 +20,6 @@ async function handleLoginFormSubmit() {
   catch (e) {
     console.log(e)
   }
-  console.log(loginFormData.value)
 }
 </script>
 
