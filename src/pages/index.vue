@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import VideoThumbnail from '~/components/VideoThumbnail.vue'
+</script>
+
 <template>
   <div class="index-page">
     <div class="top-left-container">
@@ -37,8 +41,8 @@
     </div>
 
     <div class="right-side-container">
-      <div class="top-right-container right-container bg-amber">
-        <img src="../assets/images/calendar.jpg" class="mx-auto shadow-md" alt="">
+      <div class="top-right-container right-container">
+        <img src="../assets/images/calendar.png" class="mx-auto shadow-md" alt="">
       </div>
 
       <div class="middle-right-container">

@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import profileImageUrl from '~/assets/images/student-profile.jpg'
+import { useMobileSidebar, useSidebar } from '~/composables'
 
 const { toggleMobileSidebar } = useMobileSidebar()
 const { isSidebarOpen, toggleSidebar } = useSidebar()
+
+const route = useRoute()
 </script>
 
 <template>
@@ -15,7 +18,7 @@ const { isSidebarOpen, toggleSidebar } = useSidebar()
         <maki-cross v-if="isSidebarOpen" />
         <iconamoon-menu-burger-horizontal-bold v-else />
       </button>
-      <h1 class="text-2xl font-bold lg:block">
+      <h1 v-if="route.path === '/'" class="text-2xl font-bold lg:block">
         Hello Semini
       </h1>
     </div>
