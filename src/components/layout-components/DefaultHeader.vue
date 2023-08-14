@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import profileImageUrl from '~/assets/images/student-profile.jpg'
 import { useMobileSidebar, useSidebar } from '~/composables'
-import logoImageURL from '~/assets/images/student-profile.jpg'
 
 const { toggleMobileSidebar } = useMobileSidebar()
 const { isSidebarOpen, toggleSidebar } = useSidebar()
@@ -39,7 +39,7 @@ const route = useRoute()
         Semini Dissanayaka
       </p>
 
-      <img :src="logoImageURL" alt="" class="h-[50px] w-[50px] rounded-full">
+      <img :src="profileImageUrl" alt="" class="h-[50px] w-[50px] rounded-full">
     </div>
   </header>
 </template>

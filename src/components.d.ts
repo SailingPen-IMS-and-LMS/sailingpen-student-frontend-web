@@ -17,6 +17,7 @@ declare module 'vue' {
     MaterialSymbolsDashboard: typeof import('~icons/material-symbols/dashboard')['default']
     MaterialSymbolsEditDocumentRounded: typeof import('~icons/material-symbols/edit-document-rounded')['default']
     MaterialSymbolsNotifications: typeof import('~icons/material-symbols/notifications')['default']
+    MaterialSymbolsPersonApron: typeof import('~icons/material-symbols/person-apron')['default']
     MaterialSymbolsPlayCircleOutline: typeof import('~icons/material-symbols/play-circle-outline')['default']
     MaterialSymbolsShoppingCartOutlineRounded: typeof import('~icons/material-symbols/shopping-cart-outline-rounded')['default']
     MaterialSymbolsToggleOffOutline: typeof import('~icons/material-symbols/toggle-off-outline')['default']
