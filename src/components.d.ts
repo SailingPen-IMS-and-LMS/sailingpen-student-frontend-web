@@ -50,5 +50,6 @@ declare module 'vue' {
     TutorInfoCard: typeof import('./components/TutorInfoCard.vue')['default']
     VideoQuestion: typeof import('./components/VideoQuestion.vue')['default']
     VideoThumbnail: typeof import('./components/VideoThumbnail.vue')['default']
+    ZondiconsSend: typeof import('~icons/zondicons/send')['default']
   }
 }

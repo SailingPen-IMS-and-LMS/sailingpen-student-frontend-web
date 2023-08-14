@@ -17,6 +17,7 @@
     "@unocss/reset": "^0.54.1",
     "@vueuse/core": "^10.3.0",
     "@vueuse/head": "^1.1.26",
+    "axios": "^1.4.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.6",
     "vue": "^3.3.4",
