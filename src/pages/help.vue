@@ -1,3 +1,3 @@
 <template>
-    <h1>I'm the help page</h1>
+  <h1>I'm the help page</h1>
 </template>

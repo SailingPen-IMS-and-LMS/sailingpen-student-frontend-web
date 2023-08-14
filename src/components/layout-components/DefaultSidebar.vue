@@ -13,10 +13,6 @@ const { isSidebarOpen } = useSidebar()
 <template>
   <aside class="default-sidebar" :class="[isSidebarOpen ? '' : 'default-sidebar--close']">
     <img :src="logoImgUrl" alt="">
-    <!-- <button @click="toggleSidebar">
-      <maki-cross v-if="isSidebarOpen" />
-      <iconamoon-menu-burger-horizontal-bold v-else />
-    </button> -->
     <nav class="h-[calc(100vh-88px)] flex flex-col justify-between">
       <ul>
         <SidebarLink
