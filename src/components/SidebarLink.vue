@@ -30,7 +30,7 @@ const activeClass = computed(() => {
   >
     <slot name="icon" />
     <Transition name="sidebar-link-text">
-    <span v-if="isSidebarOpen">{{ text }}</span>
+      <span v-if="isSidebarOpen">{{ text }}</span>
     </Transition>
   </RouterLink>
 </template>
@@ -71,7 +71,6 @@ const activeClass = computed(() => {
   }
 }
 
-
 .sidebar-link-text-enter-active {
   transition: all 200ms;
 }
@@ -85,6 +84,4 @@ const activeClass = computed(() => {
   opacity: 1;
   transform: translateX(0);
 }
-
-
 </style>

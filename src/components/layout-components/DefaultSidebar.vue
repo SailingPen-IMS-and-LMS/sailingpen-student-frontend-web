@@ -34,13 +34,13 @@ const { isSidebarOpen } = useSidebar()
       <ul class="bottom-links">
         <SidebarLink to="/logout" text="Logout" :is-sidebar-open="isSidebarOpen" :is-button="true">
           <template #icon>
-            <ph-sign-out-bold class="w-[24px] h-[24px] min-w-[24px] min-h-[24px]"/>
+            <ph-sign-out-bold class="w-[24px] h-[24px] min-w-[24px] min-h-[24px]" />
           </template>
         </SidebarLink>
 
         <SidebarLink to="/help" text="Help" :is-sidebar-open="isSidebarOpen">
           <template #icon>
-            <mdi-help-circle class="w-[24px] h-[24px] min-w-[24px] min-h-[24px]"/>
+            <mdi-help-circle class="w-[24px] h-[24px] min-w-[24px] min-h-[24px]" />
           </template>
         </SidebarLink>
       </ul>

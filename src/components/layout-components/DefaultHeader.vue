@@ -21,7 +21,7 @@ const { profile, fullName } = storeToRefs(authStore)
       <button class="text-[1.5rem] hidden lg:inline-block" @click="toggleSidebar">
         <iconamoon-menu-burger-horizontal-bold />
       </button>
-      <h1 v-if="route.path === '/' && profile" class="text-2xl font-bold lg:block">
+      <h1 v-if="route.path === '/' && profile" class="hidden lg:block text-2xl font-bold lg:block">
         {{
           `Hello ${profile.f_name} !`
         }}
