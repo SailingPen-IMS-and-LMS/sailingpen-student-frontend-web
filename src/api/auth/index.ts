@@ -1,9 +1,9 @@
-import { login } from './login'
-import { register } from './register'
+import { studentLogin } from './login'
+import { studentRegister } from './register'
 import { refresh } from './refresh'
 
 export const auth = {
-  login,
-  register,
+  studentLogin,
+  studentRegister,
   refresh,
 }

@@ -1,22 +1,28 @@
 <script setup lang="ts">
 import { NButton } from '@nethren-ui/vue'
-import type { EnrolledClassDetails } from '~/types'
+import { toRefs } from 'vue'
+import type { EnrolledClass } from '~/types'
 
 interface EnrolledClassProps {
-  details: EnrolledClassDetails
+  classInfo: EnrolledClass
 }
 
-defineProps<EnrolledClassProps>()
+const props = defineProps<EnrolledClassProps>()
+
+const { classInfo } = toRefs(props)
+
+const tutorName = computed(() => {
+  return `${classInfo.value.tutor_f_name} ${classInfo.value.tutor_l_name}`
+})
 </script>
 
 <template>
   <div
-    class="enrolled-class flex items-center gap-4 rounded-lg bg-[var(--bg-primary)] "
-    style="box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.1);"
+    class="enrolled-class flex items-center gap-4 rounded-lg bg-[var(--bg-primary)] shadow-md"
   >
     <div
       :style="{
-        backgroundImage: `url(${details.image})`,
+        backgroundImage: `url(${classInfo.tutor_avatar})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -29,15 +35,17 @@ defineProps<EnrolledClassProps>()
     <div class="mr-4">
       <div class=" mb-6">
         <h3 class="">
-          {{ details.name }}
+          {{ classInfo.class_name }}
         </h3>
 
         <span class="text-[0.9rem] font-[300]">
-          {{ details.subject }}
+          {{ tutorName }}
         </span>
       </div>
       <NButton mode="outline" class="mt-4">
-        Go to class
+        <RouterLink :to="`/classes/${classInfo.class_id}`">
+          Go to class
+        </RouterLink>
       </NButton>
     </div>
   </div>
@@ -47,10 +55,6 @@ defineProps<EnrolledClassProps>()
 .enrolled-class {
     h3 {
         @apply text-xl font-bold;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        max-width: 218px;
     }
 }
 </style>

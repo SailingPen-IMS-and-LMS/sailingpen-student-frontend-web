@@ -16,3 +16,13 @@ export interface StudentProfile {
   user_type: string
   username: string
 }
+
+export interface TutorBriefInfo {
+  subject: string
+  tutor_avatar: string
+  tutor_f_name: string
+  tutor_id: string
+  tutor_l_name: string
+}
+
+export type ListOfTutorBriefInfo = TutorBriefInfo[]
