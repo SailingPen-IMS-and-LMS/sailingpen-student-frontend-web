@@ -1,5 +1,5 @@
 import { authenticatedInstance } from '../../instance'
-import type { StudentProfile } from '../../../types'
+import type { StudentProfile } from '~/types'
 
 export async function getProfile() {
   try {

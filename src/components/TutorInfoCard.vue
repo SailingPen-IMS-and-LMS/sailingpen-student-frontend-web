@@ -1,15 +1,21 @@
 <script setup lang="ts">
 import { NButton } from '@nethren-ui/vue'
 import { useClasslistSidebar } from '~/composables'
-import type { EnrolledClassDetails } from '~/types'
+import type { TutorBriefInfo } from '~/types'
 
 interface TutorInfoCardProps {
-  details: EnrolledClassDetails
+  tutorInfo: TutorBriefInfo
 }
 
-defineProps<TutorInfoCardProps>()
+const props = defineProps<TutorInfoCardProps>()
 
-const { toggleClasslistSidebar } = useClasslistSidebar()
+const { tutorInfo } = toRefs(props)
+
+const tutorFullName = computed(() => {
+  return `${tutorInfo.value.tutor_f_name} ${tutorInfo.value.tutor_l_name}`
+})
+
+const { activateClasslistSidebar } = useClasslistSidebar()
 </script>
 
 <template>
@@ -19,7 +25,7 @@ const { toggleClasslistSidebar } = useClasslistSidebar()
   >
     <div
       :style="{
-        backgroundImage: `url(${details.image})`,
+        backgroundImage: `url(${tutorInfo.tutor_avatar})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -31,16 +37,16 @@ const { toggleClasslistSidebar } = useClasslistSidebar()
     <div class="mr-4">
       <div class=" mb-6">
         <h3 class="">
-          {{ details.name }}
+          {{ tutorFullName }}
         </h3>
 
         <span class="text-[0.9rem] font-[300]">
-          {{ details.subject }}
+          {{ tutorInfo.subject }}
         </span>
       </div>
       <NButton
         mode="outline" class="mt-4"
-        @click="toggleClasslistSidebar(details.id)"
+        @click="activateClasslistSidebar(tutorInfo.tutor_id)"
       >
         View classes
       </NButton>

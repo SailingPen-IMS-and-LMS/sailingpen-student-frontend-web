@@ -2,6 +2,7 @@
 import SidebarLink from '../SidebarLink.vue'
 import { useSidebar } from '~/composables'
 import logoImgUrl from '~/assets/images/logo.png'
+import shortLogoImgUrl from '~/assets/images/short-logo.png'
 import type { SidebarItems } from '~/types'
 
 const props = defineProps<{
@@ -14,7 +15,8 @@ const { isSidebarOpen } = useSidebar()
 
 <template>
   <aside class="default-sidebar" :class="[isSidebarOpen ? '' : 'default-sidebar--close']">
-    <img :src="logoImgUrl" alt="SailingPen Logo" class="mx-auto">
+    <img v-show="isSidebarOpen" :src="logoImgUrl" alt="SailingPen Logo" class="mx-auto min-w-[225px] px-[1rem]">
+    <img v-show="!isSidebarOpen" :src="shortLogoImgUrl" alt="SailingPen short logo" class="mx-auto">
     <nav class="h-[calc(100vh-88px)] flex flex-col justify-between">
       <ul>
         <SidebarLink
@@ -56,7 +58,7 @@ const { isSidebarOpen } = useSidebar()
     // display: flex;
     flex-direction: column;
     // align-items: center;
-    transition: all 300ms ease-in-out;
+    transition: all 200ms ease-in-out;
     background-color: var(--bg-primary);
     display: none;
 
@@ -65,8 +67,8 @@ const { isSidebarOpen } = useSidebar()
     }
 
     img {
-        width: 200px;
-        height: 60px;
+        // width: 200px;
+        // height: 60px;
         // margin-top: 1.5rem;
     }
 

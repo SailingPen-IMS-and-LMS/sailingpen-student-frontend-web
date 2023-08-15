@@ -1,24 +1,36 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { NButton, NCheckbox, NInput } from '@nethren-ui/vue'
+import { NButton, NInput } from '@nethren-ui/vue'
 import { api } from '~/api'
+import type { LoginDto } from '~/types'
+import { useAuthStore } from '~/stores'
 
 const { t } = useI18n()
+const router = useRouter()
+const authStore = useAuthStore()
 
-const loginFormData = ref({
+const isLoading = ref(false)
+
+const loginFormData: Ref<LoginDto> = ref({
   username: '',
   password: '',
-  rememberMe: false,
+//   remember_m: false,
 })
 
 async function handleLoginFormSubmit() {
+  isLoading.value = true
   try {
-    await api.auth.login(loginFormData.value)
-    await api.users.students.getProfile()
+    await api.auth.studentLogin(loginFormData.value)
+    const profile = await api.users.students.getProfile()
+    authStore.setProfile(profile || null)
+    if (profile)
+      await router.replace('/')
   }
   catch (e) {
     console.log(e)
+  }
+  finally {
+    isLoading.value = false
   }
 }
 </script>
@@ -46,18 +58,18 @@ async function handleLoginFormSubmit() {
           placeholder="Enter your password"
           name="password"
         />
-        <div class="flex items-center justify-between">
+        <!-- <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
             <NCheckbox
               id="remember-me"
-              v-model="loginFormData.rememberMe"
+              v-model="loginFormData."
               aria-label="Remember me"
               name="remember-me"
             />
             <label for="remember-me">Remember Me</label>
           </div>
           <a href="#" class="text-blue-600">Forgot Password</a>
-        </div>
+        </div> -->
 
         <!-- <p v-html="username" /> -->
         <!-- <div class="flex flex-col gap-2">
@@ -68,7 +80,7 @@ async function handleLoginFormSubmit() {
         <label for="password">Password </label>
         <input type="password" id="password" name="password" class="p-2 rounded-sm">
       </div> -->
-        <NButton>
+        <NButton :is-loading="isLoading" loading-text="Submitting">
           {{ t('auth.login') }}
         </NButton>
 
