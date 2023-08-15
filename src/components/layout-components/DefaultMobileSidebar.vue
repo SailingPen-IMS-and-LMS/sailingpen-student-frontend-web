@@ -17,19 +17,22 @@ const { isMobileSidebarOpen, toggleMobileSidebar } = useMobileSidebar()
   <Teleport to="body">
     <Transition name="ms">
       <aside v-if="isMobileSidebarOpen" class="default-mobile-sidebar lg:hidden">
-        <img :src="logoImgUrl" alt="" class="items-center">
+        <img :src="logoImgUrl" alt="" class="w-[calc(100%-1rem)] items-center mx-auto">
 
         <nav class="h-[calc(100vh-88px)] flex flex-col justify-between">
           <ul>
             <SidebarLink
               v-for="sidebarLink in sidebarLinks" :key="sidebarLink.to" :to="sidebarLink.to"
               :text="sidebarLink.text" :is-sidebar-open="isMobileSidebarOpen" class="text-[1.2rem]"
+              @click="async () => {
+                toggleMobileSidebar()
+              }"
             >
               <template #icon>
                 <material-symbols-dashboard v-if="sidebarLink.text === 'Dashboard'" class="text-[1.5rem]" />
                 <ic-sharp-menu-book v-else-if="sidebarLink.text === 'Lesson packs'" class="text-[1.5rem]" />
                 <fa6-solid-users-line v-else-if="sidebarLink.text === 'Classes'" class="text-[1.5rem]" />
-                <healthicons-i-exam-multiple-choice-negative
+                <ph-exam
                   v-else-if="sidebarLink.text === 'Exams'"
                   class="text-[1.5rem]"
                 />
@@ -48,7 +51,12 @@ const { isMobileSidebarOpen, toggleMobileSidebar } = useMobileSidebar()
               </template>
             </SidebarLink>
 
-            <SidebarLink to="/help" text="Help" :is-sidebar-open="isMobileSidebarOpen" class="text-[1.2rem]">
+            <SidebarLink
+              to="/help" text="Help" :is-sidebar-open="isMobileSidebarOpen" class="text-[1.2rem]"
+              @click="async () => {
+                toggleMobileSidebar()
+              }"
+            >
               <template #icon>
                 <mdi-help-circle class="text-[1.5rem]" />
               </template>
@@ -81,6 +89,18 @@ const { isMobileSidebarOpen, toggleMobileSidebar } = useMobileSidebar()
 
     @include mq(md) {
         width: 50vw;
+    }
+
+    nav {
+        padding-inline: 1rem;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 2rem;
+        width: 100%;
     }
 }
 

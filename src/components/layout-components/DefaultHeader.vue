@@ -1,11 +1,15 @@
 <script setup lang="ts">
-import profileImageUrl from '~/assets/images/student-profile.jpg'
+import { storeToRefs } from 'pinia'
 import { useMobileSidebar, useSidebar } from '~/composables'
+import { useAuthStore } from '~/stores'
 
 const { toggleMobileSidebar } = useMobileSidebar()
-const { isSidebarOpen, toggleSidebar } = useSidebar()
+const { toggleSidebar } = useSidebar()
 
 const route = useRoute()
+
+const authStore = useAuthStore()
+const { profile, fullName } = storeToRefs(authStore)
 </script>
 
 <template>
@@ -15,15 +19,14 @@ const route = useRoute()
         <iconamoon-menu-burger-horizontal-bold />
       </button>
       <button class="text-[1.5rem] hidden lg:inline-block" @click="toggleSidebar">
-        <maki-cross v-if="isSidebarOpen" />
-        <iconamoon-menu-burger-horizontal-bold v-else />
+        <iconamoon-menu-burger-horizontal-bold />
       </button>
-      <h1 v-if="route.path === '/'" class="text-2xl font-bold lg:block">
-        Hello Semini
+      <h1 v-if="route.path === '/' && profile" class="hidden lg:block text-2xl font-bold lg:block">
+        {{
+          `Hello ${profile.f_name} !`
+        }}
       </h1>
     </div>
-    <!-- <img src="../assets/images/logo.png" class="h-15" alt=""> -->
-
     <div class="flex items-center gap-4">
       <button>
         <material-symbols-notifications class="text-[1.3rem]" />
@@ -35,11 +38,13 @@ const route = useRoute()
         <material-symbols-toggle-off-outline class="text-[1.3rem]" />
       </button>
 
-      <p class="hidden lg-block">
-        Semini Dissanayaka
+      <p v-if="profile" class="hidden lg-block">
+        {{
+          fullName
+        }}
       </p>
 
-      <img :src="profileImageUrl" alt="" class="h-[50px] w-[50px] rounded-full">
+      <img v-if="profile" :src="profile.avatar || undefined" alt="" class="h-[50px] w-[50px] rounded-full">
     </div>
   </header>
 </template>
@@ -50,7 +55,7 @@ const route = useRoute()
     height: 60px;
     padding-inline: 1rem;
 
-    @include mq(lg){
+    @include mq(lg) {
         padding-inline: 2rem;
         grid-column: 2 / 3;
     }

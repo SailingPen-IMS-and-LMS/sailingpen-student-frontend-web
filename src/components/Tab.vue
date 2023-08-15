@@ -1,11 +1,10 @@
 <script setup>
-  import { ref, onMounted } from 'vue';
-  const props = defineProps([ 'active' ]);
+const props = defineProps(['active'])
 </script>
 
 <template>
-  <div class="tab" :class="(active == 'true') ? 'active' : '' " ref="tabs">
-    <slot></slot>
+  <div ref="tabs" class="tab" :class="(active == 'true') ? 'active' : '' ">
+    <slot />
   </div>
 </template>
 
