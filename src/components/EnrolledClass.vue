@@ -43,7 +43,7 @@ const tutorName = computed(() => {
         </span>
       </div>
       <NButton mode="outline" class="mt-4">
-        <RouterLink :to="`/classes/${classInfo.class_id}`">
+        <RouterLink :to="`/classes/${classInfo.class_id}/home`">
           Go to class
         </RouterLink>
       </NButton>

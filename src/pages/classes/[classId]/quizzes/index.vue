@@ -4,7 +4,7 @@ import QuizLeaderBoard from '~/components/QuizLeaderBoard.vue'
 </script>
 
 <template>
-  <div class="quizzes-page">
+  <div class="quizzes-page mt-8">
     <div class="quiz px-4">
       <div>
         <h1 class="text-lg font-semibold">

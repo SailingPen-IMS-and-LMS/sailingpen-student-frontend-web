@@ -36,7 +36,7 @@ const announcementInfoCards: AnnouncementInfoCard[] = [
 </script>
 
 <template>
-  <div class="class-announcements">
+  <div class="class-announcements-page mt-8">
     <!-- date filter -->
     <div class="date-filter flex flex-row">
       <label for="filter-date">Date : </label>

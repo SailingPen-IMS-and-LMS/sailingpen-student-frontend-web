@@ -11,7 +11,6 @@ declare module 'vue' {
     Attachment: typeof import('./components/Attachment.vue')['default']
     BrowseLessonPack: typeof import('./components/BrowseLessonPack.vue')['default']
     Cell: typeof import('./components/editable-table/Cell.vue')['default']
-    ClassInfoCard: typeof import('./components/ClassInfoCard.vue')['default']
     ClassListSidebar: typeof import('./components/ClassListSidebar.vue')['default']
     DefaultHeader: typeof import('./components/layout-components/DefaultHeader.vue')['default']
     DefaultMobileSidebar: typeof import('./components/layout-components/DefaultMobileSidebar.vue')['default']
@@ -21,7 +20,6 @@ declare module 'vue' {
     ExamRank: typeof import('./components/ExamRank.vue')['default']
     Fa6SolidUsersLine: typeof import('~icons/fa6-solid/users-line')['default']
     FlashCard: typeof import('./components/FlashCard.vue')['default']
-    HealthiconsIExamMultipleChoiceNegative: typeof import('~icons/healthicons/i-exam-multiple-choice-negative')['default']
     IcBaselinePlus: typeof import('~icons/ic/baseline-plus')['default']
     IconamoonMenuBurgerHorizontalBold: typeof import('~icons/iconamoon/menu-burger-horizontal-bold')['default']
     IcRoundArrowBack: typeof import('~icons/ic/round-arrow-back')['default']
@@ -31,7 +29,6 @@ declare module 'vue' {
     IcSharpMenuBook: typeof import('~icons/ic/sharp-menu-book')['default']
     LeaderBoard: typeof import('./components/LeaderBoard.vue')['default']
     LessonPack: typeof import('./components/LessonPack.vue')['default']
-    MakiCross: typeof import('~icons/maki/cross')['default']
     MaterialSymbolsDashboard: typeof import('~icons/material-symbols/dashboard')['default']
     MaterialSymbolsEditDocumentRounded: typeof import('~icons/material-symbols/edit-document-rounded')['default']
     MaterialSymbolsNotifications: typeof import('~icons/material-symbols/notifications')['default']
@@ -40,6 +37,7 @@ declare module 'vue' {
     MaterialSymbolsToggleOffOutline: typeof import('~icons/material-symbols/toggle-off-outline')['default']
     MaterialSymbolsTrophy: typeof import('~icons/material-symbols/trophy')['default']
     MdiCards: typeof import('~icons/mdi/cards')['default']
+    MdiHeadQuestion: typeof import('~icons/mdi/head-question')['default']
     MdiHelpCircle: typeof import('~icons/mdi/help-circle')['default']
     NotEnrolledClassCard: typeof import('./components/NotEnrolledClassCard.vue')['default']
     OtherVideo: typeof import('./components/OtherVideo.vue')['default']
@@ -58,6 +56,5 @@ declare module 'vue' {
     TutorInfoCard: typeof import('./components/TutorInfoCard.vue')['default']
     VideoQuestion: typeof import('./components/VideoQuestion.vue')['default']
     VideoThumbnail: typeof import('./components/VideoThumbnail.vue')['default']
-    ZondiconsSend: typeof import('~icons/zondicons/send')['default']
   }
 }
