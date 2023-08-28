@@ -18,9 +18,9 @@ const tutorName = computed(() => {
 
 <template>
   <div
-    class="enrolled-class flex items-center gap-4 rounded-lg bg-[var(--bg-primary)] shadow-md"
+    class="enrolled-class flex items-center gap-4 rounded-lg bg-[var(--bg-primary)] shadow-md p-4"
   >
-    <div
+    <!-- <div
       :style="{
         backgroundImage: `url(${classInfo.tutor_avatar})`,
         backgroundRepeat: 'no-repeat',
@@ -30,7 +30,7 @@ const tutorName = computed(() => {
       }"
 
       class="w-[150px] h-[150px]"
-    />
+    /> -->
     <!-- <img :src="details.image" :alt="`${details.name}'s Photo'`" class="w-[150px] rounded-lg"> -->
     <div class="mr-4">
       <div class=" mb-6">

@@ -42,7 +42,7 @@ const resourceInfoCards: ResourceInfoCard[] = [
   {
     id: 2,
     title: 'Introduction to Permutations and Combinations Recording ',
-    image: '/resource-vid-thumb.jpg',
+    image: '/images/placeholders/thumbnail.jpeg',
     description: 'Introduction to Permutations and Combinations Recording" provides a concise overview of the fundamental concepts of permutations and combinations. This recording offers a beginner-friendly introduction to these mathematical principles, explaining their significance and applications in various fields',
     date: '2023-3-10',
     attachments: [
@@ -63,7 +63,7 @@ const resourceInfoCards: ResourceInfoCard[] = [
     id: 3,
 
     title: 'Introduction to Permutations and Combinations Recording ',
-    image: '/resource-vid-thumb.jpg',
+    image: '/images/placeholders/thumbnail2.jpg',
     description: 'Introduction to Permutations and Combinations Recording" provides a concise overview of the fundamental concepts of permutations and combinations. This recording offers a beginner-friendly introduction to these mathematical principles, explaining their significance and applications in various fields',
     date: '2023-3-10',
     attachments: [

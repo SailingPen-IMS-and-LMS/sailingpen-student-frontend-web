@@ -4,6 +4,9 @@ import { useSidebar } from '~/composables'
 import logoImgUrl from '~/assets/images/logo.png'
 import shortLogoImgUrl from '~/assets/images/short-logo.png'
 import type { SidebarItems } from '~/types'
+import {useAuthStore} from '~/stores'
+import {storeToRefs} from 'pinia'
+import { api } from '~/api'
 
 const props = defineProps<{
   sidebarLinks: SidebarItems
@@ -11,6 +14,31 @@ const props = defineProps<{
 
 const { sidebarLinks } = toRefs(props)
 const { isSidebarOpen } = useSidebar()
+
+const authStore = useAuthStore()
+const {profile} = storeToRefs(authStore)
+
+const loggingOut = ref(false)
+
+const router = useRouter()
+
+async function logout() {
+  loggingOut.value = true
+  try {
+      const res = await api.auth.logoutStudent()
+      if (res) {
+        profile.value = null
+        await router.replace('/auth/login')
+      } else {
+        throw new Error("Something happened ..")
+      }
+  } catch (error) {
+    console.log(error)
+  } finally {
+    loggingOut.value = false
+  }
+}
+
 </script>
 
 <template>
@@ -34,7 +62,7 @@ const { isSidebarOpen } = useSidebar()
       </ul>
 
       <ul class="bottom-links">
-        <SidebarLink to="/logout" text="Logout" :is-sidebar-open="isSidebarOpen" :is-button="true">
+        <SidebarLink to="/logout" :text="!loggingOut ? 'Logout' : 'Logging out'" :is-sidebar-open="isSidebarOpen" :is-button="true" @click="logout">
           <template #icon>
             <ph-sign-out-bold class="w-[24px] h-[24px] min-w-[24px] min-h-[24px]" />
           </template>

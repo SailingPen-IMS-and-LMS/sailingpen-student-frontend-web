@@ -15,6 +15,7 @@ onMounted(async () => {
   }
 
   else {
+    tutionClassesStore.setLoadingEnrolledClasses(true)
     const enrolledClasses = await api.tutionClasses.enrolled()
     tutionClassesStore.setLoadingEnrolledClasses(false)
     tutionClassesStore.setEnrolledClasses(enrolledClasses || [])

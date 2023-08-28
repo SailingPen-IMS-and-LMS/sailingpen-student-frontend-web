@@ -1,15 +1,25 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
+import { api } from '~/api';
 import VideoThumbnail from '~/components/VideoThumbnail.vue'
 import { useTutionClassesStore } from '~/stores'
 
 const tutionClassesStore = useTutionClassesStore()
-const { isNotEnrolledInAnyClass } = storeToRefs(tutionClassesStore)
+const { isNotEnrolledInAnyClass, loadingEnrolledClasses } = storeToRefs(tutionClassesStore)
+
+onMounted(async () => {
+    tutionClassesStore.setLoadingEnrolledClasses(true)
+    const enrolledClasses = await api.tutionClasses.enrolled()
+    tutionClassesStore.setLoadingEnrolledClasses(false)
+    tutionClassesStore.setEnrolledClasses(enrolledClasses || [])
+    // console.log(await api.users.tutors.getListForStudents())
+  })
+
 </script>
 
 <template>
-  <div class="index-page" :class="isNotEnrolledInAnyClass ? 'index-page--not-enrolled-error' : ''">
-    <div v-if="isNotEnrolledInAnyClass">
+  <div class="index-page" :class="isNotEnrolledInAnyClass ? 'index-page--not-enrolled-error' : (loadingEnrolledClasses ? 'index-page--loading' : '') ">
+    <div v-if="!loadingEnrolledClasses && isNotEnrolledInAnyClass">
       <h1 class="not-enrolled-error">
         You are not enrolled in any classes yet
         <RouterLink to="/classes" class="text-blue-500 flex items-center gap-2">
@@ -17,6 +27,9 @@ const { isNotEnrolledInAnyClass } = storeToRefs(tutionClassesStore)
           <ic-round-arrow-forward />
         </RouterLink>
       </h1>
+    </div>
+    <div v-else-if="loadingEnrolledClasses">
+        <svg-spinners-180-ring class="text-6xl" />
     </div>
     <template v-else>
       <div class="top-left-container">
@@ -121,6 +134,13 @@ const { isNotEnrolledInAnyClass } = storeToRefs(tutionClassesStore)
 
 <style lang="scss">
 .index-page--not-enrolled-error {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: calc(100vh - 60px) !important;
+}
+
+.index-page--loading {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
