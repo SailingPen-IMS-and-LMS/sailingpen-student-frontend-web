@@ -10,12 +10,11 @@
         "right-side";
     gap: 1rem;
     overflow-x: hidden;
-    background-color: blueviolet;
 
     //
-    padding: 0 2rem;
-    overflow-y: auto;
-    height: calc(100vh - 60px);
+    // padding: 0 2rem;
+    // overflow-y: auto;
+    // height: calc(100vh - 60px);
     align-items: center;
     ///
 
@@ -27,25 +26,21 @@
             "progresses right-side";
         gap: 1rem;
         overflow-x: hidden;
-        background-color: blueviolet;
     }
 }
 
 
 .top-left-container {
     grid-area: lesson-1;
-    background-color: green;
 }
 
 .middle-left-container {
     grid-area: lesson-2;
-    background-color: green;
 
 }
 
 .bottom-left-container {
     grid-area: progresses;
-    background-color: blue;
 }
 
 .top-right-container {
@@ -69,13 +64,11 @@
 
 .right-side-container {
     grid-area: right-side;
-    background-color: red;
 }
 
 .right-container {
     width: 280px;
     // height: 250px;
-    background-color: var(--bg-primary);
     border-radius: 8px;
     grid-area: calendar;
     padding: 1rem;

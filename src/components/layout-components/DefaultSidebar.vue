@@ -1,6 +1,12 @@
 <script setup lang="ts">
+import SidebarLink from '../SidebarLink.vue'
+import { useSidebar } from '~/composables'
 import logoImgUrl from '~/assets/images/logo.png'
+import shortLogoImgUrl from '~/assets/images/short-logo.png'
 import type { SidebarItems } from '~/types'
+import {useAuthStore} from '~/stores'
+import {storeToRefs} from 'pinia'
+import { api } from '~/api'
 
 const props = defineProps<{
   sidebarLinks: SidebarItems
@@ -8,15 +14,37 @@ const props = defineProps<{
 
 const { sidebarLinks } = toRefs(props)
 const { isSidebarOpen } = useSidebar()
+
+const authStore = useAuthStore()
+const {profile} = storeToRefs(authStore)
+
+const loggingOut = ref(false)
+
+const router = useRouter()
+
+async function logout() {
+  loggingOut.value = true
+  try {
+      const res = await api.auth.logoutStudent()
+      if (res) {
+        profile.value = null
+        await router.replace('/auth/login')
+      } else {
+        throw new Error("Something happened ..")
+      }
+  } catch (error) {
+    console.log(error)
+  } finally {
+    loggingOut.value = false
+  }
+}
+
 </script>
 
 <template>
   <aside class="default-sidebar" :class="[isSidebarOpen ? '' : 'default-sidebar--close']">
-    <img :src="logoImgUrl" alt="">
-    <!-- <button @click="toggleSidebar">
-      <maki-cross v-if="isSidebarOpen" />
-      <iconamoon-menu-burger-horizontal-bold v-else />
-    </button> -->
+    <img v-show="isSidebarOpen" :src="logoImgUrl" alt="SailingPen Logo" class="mx-auto min-w-[225px] px-[1rem]">
+    <img v-show="!isSidebarOpen" :src="shortLogoImgUrl" alt="SailingPen short logo" class="mx-auto">
     <nav class="h-[calc(100vh-88px)] flex flex-col justify-between">
       <ul>
         <SidebarLink
@@ -24,25 +52,25 @@ const { isSidebarOpen } = useSidebar()
           :text="sidebarLink.text" :is-sidebar-open="isSidebarOpen"
         >
           <template #icon>
-            <ic-round-dashboard v-if="sidebarLink.text === 'Dashboard'" />
-            <ic-sharp-menu-book v-else-if="sidebarLink.text === 'Lesson packs'" />
-            <fa6-solid-users-line v-else-if="sidebarLink.text === 'Classes'" />
-            <healthicons-i-exam-multiple-choice-negative v-else-if="sidebarLink.text === 'Exams'" />
-            <mdi-cards v-else-if="sidebarLink.text === 'Flash Cards'" />
+            <ic-round-dashboard v-if="sidebarLink.text === 'Dashboard'" class="w-[24px] h-[24px] min-w-[24px] min-h-[24px]" />
+            <ic-sharp-menu-book v-else-if="sidebarLink.text === 'Lesson packs'" class="w-[24px] h-[24px] min-w-[24px] min-h-[24px]" />
+            <fa6-solid-users-line v-else-if="sidebarLink.text === 'Classes'" class="w-[24px] h-[24px] min-w-[24px] min-h-[24px]" />
+            <ph-exam v-else-if="sidebarLink.text === 'Exams'" class="w-[24px] h-[24px] min-w-[24px] min-h-[24px]" />
+            <mdi-cards v-else-if="sidebarLink.text === 'Flash Cards'" class="w-[24px] h-[24px] min-w-[24px] min-h-[24px]" />
           </template>
         </SidebarLink>
       </ul>
 
       <ul class="bottom-links">
-        <SidebarLink to="/logout" text="Logout" :is-sidebar-open="isSidebarOpen" :is-button="true">
+        <SidebarLink to="/logout" :text="!loggingOut ? 'Logout' : 'Logging out'" :is-sidebar-open="isSidebarOpen" :is-button="true" @click="logout">
           <template #icon>
-            <ph-sign-out-bold />
+            <ph-sign-out-bold class="w-[24px] h-[24px] min-w-[24px] min-h-[24px]" />
           </template>
         </SidebarLink>
 
         <SidebarLink to="/help" text="Help" :is-sidebar-open="isSidebarOpen">
           <template #icon>
-            <mdi-help-circle />
+            <mdi-help-circle class="w-[24px] h-[24px] min-w-[24px] min-h-[24px]" />
           </template>
         </SidebarLink>
       </ul>
@@ -57,8 +85,8 @@ const { isSidebarOpen } = useSidebar()
     grid-row: 1 / 3;
     // display: flex;
     flex-direction: column;
-    align-items: center;
-    transition: all 300ms ease-in-out;
+    // align-items: center;
+    transition: all 200ms ease-in-out;
     background-color: var(--bg-primary);
     display: none;
 
@@ -67,9 +95,14 @@ const { isSidebarOpen } = useSidebar()
     }
 
     img {
-        width: 200px;
-        height: 60px;
-        margin-top: 1.5rem;
+        // width: 200px;
+        // height: 60px;
+        // margin-top: 1.5rem;
+    }
+
+    nav {
+        padding-inline: 1rem;
+        // margin-top: 60px;
     }
 
     ul {
@@ -77,10 +110,11 @@ const { isSidebarOpen } = useSidebar()
         flex-direction: column;
         gap: 1rem;
         margin-top: 2rem;
+        width: 100%;
     }
 
     &--close {
-        width: 100px;
+        width: 88px;
     }
 
 }

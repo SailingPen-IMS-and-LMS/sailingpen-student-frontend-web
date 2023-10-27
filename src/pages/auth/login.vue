@@ -1,61 +1,86 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { NButton, NCheckbox, NInput } from '@nethren-ui/vue'
+import { NButton, NInput } from '@nethren-ui/vue'
+import { api } from '~/api'
+import type { LoginDto } from '~/types'
+import { useAuthStore } from '~/stores'
 
 const { t } = useI18n()
+const router = useRouter()
+const authStore = useAuthStore()
 
-const email = ref('')
-const password = ref('')
-const rememberMe = ref(false)
+const isLoading = ref(false)
+
+const loginFormData: Ref<LoginDto> = ref({
+  username: '',
+  password: '',
+//   remember_m: false,
+})
+
+async function handleLoginFormSubmit() {
+  isLoading.value = true
+  try {
+    await api.auth.studentLogin(loginFormData.value)
+    const profile = await api.users.students.getProfile()
+    authStore.setProfile(profile || null)
+    if (profile)
+      await router.replace('/')
+  }
+  catch (e) {
+    console.log(e)
+  }
+  finally {
+    isLoading.value = false
+  }
+}
 </script>
 
 <template>
   <div class="flex">
     <div class="h-screen w-[45vw] flex items-center justify-center">
-      <form action="" class="w-[450px] flex flex-col gap-4 rounded-lg p-4">
+      <form class="w-[450px] flex flex-col gap-4 rounded-lg p-4" @submit.prevent="handleLoginFormSubmit">
         <h2 class="login-message text-5xl">
           Welcome Back !
         </h2>
         <NInput
-          id="email"
-          v-model="email"
-          label="Email"
-          placeholder="Enter your email address"
-          name="email"
-          type="email"
+          id="username"
+          v-model="loginFormData.username"
+          label="Username"
+          placeholder="Enter your username"
+          name="username"
+          type="text"
         />
         <NInput
           id="password"
-          v-model="password"
+          v-model="loginFormData.password"
           type="password"
           label="Password"
           placeholder="Enter your password"
           name="password"
         />
-        <div class="flex items-center justify-between">
+        <!-- <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
             <NCheckbox
               id="remember-me"
-              v-model="rememberMe"
+              v-model="loginFormData."
               aria-label="Remember me"
               name="remember-me"
             />
             <label for="remember-me">Remember Me</label>
           </div>
           <a href="#" class="text-blue-600">Forgot Password</a>
-        </div>
+        </div> -->
 
-        <p v-html="email" />
+        <!-- <p v-html="username" /> -->
         <!-- <div class="flex flex-col gap-2">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" class="p-2 rounded-sm">
+        <label for="username">username</label>
+        <input type="username" id="username" name="username" class="p-2 rounded-sm">
       </div>
       <div class="flex flex-col gap-2">
         <label for="password">Password </label>
         <input type="password" id="password" name="password" class="p-2 rounded-sm">
       </div> -->
-        <NButton>
+        <NButton :is-loading="isLoading" loading-text="Submitting">
           {{ t('auth.login') }}
         </NButton>
 
