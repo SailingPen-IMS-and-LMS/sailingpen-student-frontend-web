@@ -24,7 +24,12 @@ onMounted(async () => {
   const results = await api.lessonPacks.getAvailableToBuy()
   lessonPacks.value = results
   lessonPacks.value.forEach((lp) => {
-    if (!tutors.value.includes(lp.tutor.user))
+    if (!tutors.value.find((t) => {
+      if (t.f_name === lp.tutor.user.f_name && t.l_name === lp.tutor.user.l_name)
+        return true
+      return false
+    }))
+
       tutors.value.push(lp.tutor.user)
   })
   isLessonPacksLoading.value = false

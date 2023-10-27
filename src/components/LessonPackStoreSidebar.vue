@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { NButton } from '@nethren-ui/vue'
 import { ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import StoreViewCard from './StoreViewCard.vue'
 import { useLessonPackSidebar } from '~/composables'
 import type { LessonPackDetails } from '~/types/api-types/lesson-packs-types'
@@ -32,6 +33,21 @@ function getLessonPackResourceByType(type: ResourceType) {
     })
   }
   return [] as LessonPackDetails['resources']
+}
+
+const isTryingToBuy = ref(false)
+const router = useRouter()
+async function buyLessonPack() {
+  isTryingToBuy.value = true
+  const result = await api.lessonPacks.buyLessonPacks(lessonPackId.value)
+  isTryingToBuy.value = false
+  if (result) {
+    closeLessonPackSidebar()
+    await router.push('/lesson-packs')
+  }
+  else {
+    alert('Something went wrong. Please try again later.')
+  }
 }
 </script>
 
@@ -100,9 +116,11 @@ function getLessonPackResourceByType(type: ResourceType) {
             />
           </div>
 
-          <div class="px-[5rem] py-[1rem] flex justify-between">
-            <NButton>Buy Now</NButton>
-            <NButton>Add to cart</NButton>
+          <div class="px-[2rem] py-[1rem] flex justify-between">
+            <NButton :is-loading="isTryingToBuy" loading-text="Buying" @click="buyLessonPack">
+              Buy Now
+            </NButton>
+            <!-- <NButton>Add to cart</NButton> -->
           </div>
         </template>
         <div v-else-if="!isLessonPackDetailsLoading && !lessonPackDetails">
