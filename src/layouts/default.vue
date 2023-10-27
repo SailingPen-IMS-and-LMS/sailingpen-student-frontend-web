@@ -19,7 +19,7 @@ const sidebarLinks: SidebarItems = [
   },
 
   {
-    to: '/exams', text: 'Exams',
+    to: '/exams/upcoming', text: 'Exams',
   },
 
   {

@@ -1,59 +1,35 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { storeToRefs } from 'pinia'
 import { useRoute } from 'vue-router'
-import { useTutionClassesStore } from '~/stores'
 import PageHeading from '~/components/common/PageHeading.vue'
 
 const route = useRoute()
-const params = route.params
-const classId = params.classId as string
-
-const tutionClassesStore = useTutionClassesStore()
-const { enrolledClasses } = storeToRefs(tutionClassesStore)
-
-const currentClass = computed(() => {
-  return enrolledClasses.value.find(ec => ec.class_id === classId)
-})
 
 const currentTab = computed(() => {
-  return route.path.split('/').pop() as 'home' | 'announcements' | 'quizzes'
+  return route.path.split('/').pop() as 'upcoming' | 'history'
 })
 
 // const currentTab = ref<'home' | 'announcements' | 'quizzes'>(lastSegmentOfPath.value)
 </script>
 
 <template>
-  <div v-if="currentClass" class="class-home-page">
+  <div class="class-home-page">
     <PageHeading>
-      {{ currentClass.class_name }}
+      Exams
     </PageHeading>
     <div class="tabs-header flex items-center gap-4 mt-4">
       <RouterLink
-        :to="`/classes/${currentClass?.class_id}/home`" class="tab-link"
-        :class="currentTab === 'home' ? 'tab-link--active' : ''"
+        to="/exams/upcoming" class="tab-link"
+        :class="currentTab === 'upcoming' ? 'tab-link--active' : ''"
       >
-        Home
+        Upcoming Exams
       </RouterLink>
       <RouterLink
-        :to="`/classes/${currentClass?.class_id}/announcements`" class="tab-link"
-        :class="currentTab === 'announcements' ? 'tab-link--active' : ''"
+        to="/exams/history" class="tab-link"
+        :class="currentTab === 'history' ? 'tab-link--active' : ''"
       >
-        Announcements
+        History
       </RouterLink>
-      <RouterLink
-        :to="`/classes/${currentClass?.class_id}/quizzes`" class="tab-link"
-        :class="currentTab === 'quizzes' ? 'tab-link--active' : ''"
-      >
-        Quizzes
-      </RouterLink>
-
-      <!-- <RouterLink
-        :to="`/classes/${currentClass?.class_id}/quizz-leaderboard`" class="tab-link"
-        :class="currentTab === 'quizz-leaderboard' ? 'tab-link--active' : ''"
-      >
-        Quiz Leaderboard
-      </RouterLink> -->
     </div>
     <router-view v-slot="{ Component }">
       <transition name="slide" mode="out-in">

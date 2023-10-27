@@ -1,54 +1,94 @@
 <script setup lang="ts">
+import { NButton } from '@nethren-ui/vue'
 import Quiz from '~/components/Quiz.vue'
-import QuizLeaderBoard from '~/components/QuizLeaderBoard.vue'
+import Accordion from '~/components/Accordion.vue'
+
+const route = useRoute()
+console.log(route.params)
 </script>
 
 <template>
-    <div class="quizzes-page mt-8">
-        <div class="quiz px-4">
-            <div>
-                <h1 class="text-lg font-semibold">
-                    Available Now
-                </h1>
-                <RouterLink to="/classes/class12523_345/quizzes/quizId/questions">
-                    <Quiz
-                        :details="{ quizNumber: 1, name: 'Permutations and Combinations', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy teindustrys standard dummy te' }" />
-                </RouterLink>
+  <div class="quizzes-page mt-8">
+    <div class="quiz px-4">
+      <div class="available-now">
+        <h1 class="text-lg font-semibold">
+          Available Now
+        </h1>
+        <RouterLink to="/classes/class12523_345/quizzes/quizId/questions">
+          <Quiz
+            :details="{ quizNumber: 1, name: 'Permutations and Combinations', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy teindustrys standard dummy te' }"
+          />
+        </RouterLink>
 
-                <RouterLink to="/classes/class12523_345/quizzes/quizId/questions">
-                    <Quiz
-                        :details="{ quizNumber: 1, name: 'Permutations and Combinations', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy teindustrys standard dummy te' }" />
-                </RouterLink>
+        <RouterLink to="/classes/class12523_345/quizzes/quizId/questions">
+          <Quiz
+            :details="{ quizNumber: 1, name: 'Permutations and Combinations', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy teindustrys standard dummy te' }"
+          />
+        </RouterLink>
+      </div>
 
-            </div>
-
-            <div>
-                <h1 class="text-lg font-semibold">
-                    Upcoming
-                </h1>
-                <Quiz
-                    :details="{ quizNumber: 1, name: 'Permutations and Combinations', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy teindustrys standard dummy te' }" />
-
-                <Quiz
-                    :details="{ quizNumber: 1, name: 'Permutations and Combinations', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy teindustrys standard dummy te' }" />
-            </div>
-
-            <div>
-                <h1 class="text-lg font-semibold">
-                    History
-                </h1>
-                <Quiz
-                    :details="{ quizNumber: 1, name: 'Permutations and Combinations', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy teindustrys standard dummy te' }" />
-
-                <Quiz
-                    :details="{ quizNumber: 1, name: 'Permutations and Combinations', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy teindustrys standard dummy te' }" />
-
-                <Quiz
-                    :details="{ quizNumber: 1, name: 'Permutations and Combinations', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy teindustrys standard dummy te' }" />
-            </div>
+      <div class="upcoming-history flex flex-col">
+        <div class="self-end">
+          <RouterLink
+            :to="`/classes/${route.params.classId}/quizz-leaderboard`"
+          >
+            <NButton>
+              Quiz Leaderboard
+            </NButton>
+          </RouterLink>
         </div>
 
-        <div class="places bg-[var(--bg-primary)] shadow-md flex gap-[2.5rem] justify-center p-8 my-[1rem] rounded-xl">
+        <div class="mt-3">
+          <Accordion
+            :details="{ title: 'Upcoming Quizzes' }"
+          >
+            <ul>
+              <li>Permutations and Combination Quiz 10</li>
+              <li>Permutations and Combination Quiz 11</li>
+              <li>Motion Quiz 12</li>
+              <li>Trigonometry Quiz 3</li>
+            </ul>
+          </Accordion>
+
+          <Accordion
+            :details="{ title: 'History' }"
+          />
+        </div>
+
+        <!-- <div>
+          <h1 class="text-lg font-semibold">
+            Upcoming
+          </h1>
+          <Quiz
+            :details="{ quizNumber: 1, name: 'Permutations and Combinations', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy teindustrys standard dummy te' }"
+          />
+
+          <Quiz
+            :details="{ quizNumber: 1, name: 'Permutations and Combinations', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy teindustrys standard dummy te' }"
+          />
+        </div> -->
+
+        <!-- <div>
+          <h1 class="text-lg font-semibold">
+            History
+          </h1>
+          <Quiz
+            :details="{ quizNumber: 1, name: 'Permutations and Combinations', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy teindustrys standard dummy te' }"
+          />
+
+          <Quiz
+            :details="{ quizNumber: 1, name: 'Permutations and Combinations', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy teindustrys standard dummy te' }"
+          />
+
+          <Quiz
+            :details="{ quizNumber: 1, name: 'Permutations and Combinations', description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the dummy teindustrys standard dummy te' }"
+          />
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="places bg-[var(--bg-primary)] shadow-md flex gap-[2.5rem] justify-center p-8 my-[1rem] rounded-xl">
             <div class="flex flex-col items-center gap-2 items-end justify-end">
                 <img src="/student-profile.jpg" alt="" class="w-[50px] h-[50px]"
                     style="aspect-ratio: 1; border-radius: 50%;">
@@ -87,80 +127,85 @@ import QuizLeaderBoard from '~/components/QuizLeaderBoard.vue'
                     </p>
                 </div>
             </div>
-        </div>
+        </div> -->
 
-        <div
-            class="summary text-center bg-[var(--bg-primary)] shadow-md px-8 my-[1rem] flex flex-col justify-center items-center rounded-xl">
-            <p class="font-semibold text-xl my-4">
-                Your Accumulative Rank
-            </p>
-            <p class="font-bold text-5xl text-[var(--n-color-primary-400)] my-3">
-                56
-            </p>
-            <p>Your Average score : 87</p>
-            <p>Number of student who attempted the Quiz : 2456</p>
-        </div>
+  <!-- <div
+    class="summary text-center bg-[var(--bg-primary)] shadow-md px-8 my-[1rem] flex flex-col justify-center items-center rounded-xl"
+  >
+    <p class="font-semibold text-xl my-4">
+      Your Accumulative Rank
+    </p>
+    <p class="font-bold text-5xl text-[var(--n-color-primary-400)] my-3">
+      56
+    </p>
+    <p>Your Average score : 87</p>
+    <p>Number of student who attempted the Quiz : 2456</p>
+  </div>
 
-        <div class="leaderboard">
-            <p class="font-semibold">
-                Leader Board
-            </p>
-            <div class="flex gap-[6rem] font-semibold text-gray-500 my-4">
-                <p class="w-[3rem]">
-                    Place
-                </p>
-                <p class="w-[15rem]">
-                    Index Number
-                </p>
-                <p class="w-[20rem]">
-                    Name
-                </p>
-                <p>
-                    Marks
-                </p>
-            </div>
-            <hr class="">
-
-            <div>
-                <QuizLeaderBoard
-                    :details="{ place: 1, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }" />
-
-                <QuizLeaderBoard
-                    :details="{ place: 2, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }" />
-
-                <QuizLeaderBoard
-                    :details="{ place: 3, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }" />
-
-                <QuizLeaderBoard
-                    :details="{ place: 1, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }" />
-
-                <QuizLeaderBoard
-                    :details="{ place: 2, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }" />
-
-                <QuizLeaderBoard
-                    :details="{ place: 3, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }" />
-
-                <QuizLeaderBoard
-                    :details="{ place: 1, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }" />
-
-                <QuizLeaderBoard
-                    :details="{ place: 2, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }" />
-
-                <QuizLeaderBoard
-                    :details="{ place: 3, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }" />
-            </div>
-        </div>
+  <div class="leaderboard">
+    <p class="font-semibold">
+      Leader Board
+    </p>
+    <div class="flex gap-[6rem] font-semibold text-gray-500 my-4">
+      <p class="w-[3rem]">
+        Place
+      </p>
+      <p class="w-[15rem]">
+        Index Number
+      </p>
+      <p class="w-[20rem]">
+        Name
+      </p>
+      <p>
+        Marks
+      </p>
     </div>
+    <hr class="">
+
+    <div>
+      <QuizLeaderBoard
+        :details="{ place: 1, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }"
+      />
+
+      <QuizLeaderBoard
+        :details="{ place: 2, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }"
+      />
+
+      <QuizLeaderBoard
+        :details="{ place: 3, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }"
+      />
+
+      <QuizLeaderBoard
+        :details="{ place: 1, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }"
+      />
+
+      <QuizLeaderBoard
+        :details="{ place: 2, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }"
+      />
+
+      <QuizLeaderBoard
+        :details="{ place: 3, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }"
+      />
+
+      <QuizLeaderBoard
+        :details="{ place: 1, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }"
+      />
+
+      <QuizLeaderBoard
+        :details="{ place: 2, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }"
+      />
+
+      <QuizLeaderBoard
+        :details="{ place: 3, indexNumber: '2000034', profilePicture: '/student-profile.jpg', name: 'Shanaka Weerasingha', marks: '99%' }"
+      />
+    </div>
+  </div> -->
 </template>
 
 <style scoped lang="scss">
-.quizzes-page {
+.quiz {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-areas:
-        'quiz places summary'
-        'quiz leaderboard leaderboard'
-        'quiz leaderboard leaderboard';
+    grid-template-columns: 2fr 1fr;
     gap: 2rem;
     height: calc(100vh - 60px);
     overflow: hidden;
@@ -172,16 +217,24 @@ import QuizLeaderBoard from '~/components/QuizLeaderBoard.vue'
     overflow-y: auto;
 }
 
-.places {
-    grid-area: places;
+// .available_now{
+//     grid-area: available-now;
+// }
 
-    // height: 300px;
-}
+// .upcoming-history{
+//     grid-area: upcoming-history;
+// }
 
-.summary {
-    grid-area: summary;
-    // height: 300px;
-}
+// .places {
+//     grid-area: places;
+
+//     // height: 300px;
+// }
+
+// .summary {
+//     grid-area: summary;
+//     // height: 300px;
+// }
 
 .leaderboard {
     grid-area: leaderboard;

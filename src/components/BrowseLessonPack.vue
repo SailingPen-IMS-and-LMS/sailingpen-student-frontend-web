@@ -7,6 +7,10 @@ interface BrowseLessonPacksProps {
 }
 
 defineProps<BrowseLessonPacksProps>()
+
+const emit = defineEmits<{
+  onDetailsSidebarOpen: []
+}>()
 </script>
 
 <template>
@@ -20,7 +24,7 @@ defineProps<BrowseLessonPacksProps>()
         Price: Rs. <span class="text-red-600 font-semibold text-xl">{{ details.price }}</span>
       </p>
       <div class="flex justify-end px-4 py-2">
-        <NButton mode="text">
+        <NButton mode="text" @click="emit('onDetailsSidebarOpen')">
           View
         </NButton>
       </div>
