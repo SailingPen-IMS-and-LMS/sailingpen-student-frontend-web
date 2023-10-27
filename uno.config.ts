@@ -6,6 +6,7 @@ import {
 } from 'unocss'
 
 export default defineConfig({
+  safelist: ['block'],
   presets: [
     presetUno(),
   ],

@@ -88,21 +88,6 @@ watch(tutorId, async (newVal, oldVal) => {
     }
 }
 
-.cs-enter-from,
-.cs-leave-to {
-    transform: translateX(100%);
-}
-
-.cs-enter-to,
-.cs-leave-from {
-    transform: translateX(0);
-}
-
-.cs-enter-active,
-.cs-leave-active {
-    transition: all 200ms ease-in-out;
-}
-
 .classlist-gallery {
     display: flex;
     flex-direction: column;
