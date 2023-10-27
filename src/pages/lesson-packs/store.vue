@@ -1,97 +1,47 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
 import BrowseLessonPack from '~/components/BrowseLessonPack.vue'
 import LessonPackStoreSidebar from '~/components/LessonPackStoreSidebar.vue'
 import { useLessonPackSidebar } from '~/composables'
+import { api } from '~/api'
+import type { AvailableToBuyLessonPacksResponse } from '~/types/api-types/lesson-packs-types'
 
 const { activateLessonPackSidebar } = useLessonPackSidebar()
+const lessonPacks = ref<AvailableToBuyLessonPacksResponse>([])
+const tutors = ref<{ f_name: string; l_name: string }[]>([])
+
+function getLessonPacksByTutor({ f_name, l_name }: { f_name: string; l_name: string }) {
+  return lessonPacks.value.filter((lp) => {
+    return lp.tutor.user.f_name === f_name && lp.tutor.user.l_name === l_name
+  })
+}
+
+onMounted(async () => {
+  console.log('Store page created')
+  const results = await api.lessonPacks.getAvailableToBuy()
+  lessonPacks.value = results
+  lessonPacks.value.forEach((lp) => {
+    if (!tutors.value.includes(lp.tutor.user))
+      tutors.value.push(lp.tutor.user)
+  })
+})
 </script>
 
 <template>
   <div class="browse-lesson-pack-page">
-    <div>
+    <div v-for="tutor in tutors" :key="`${tutor.f_name}  ${tutor.l_name}`">
       <h2 class="font-semibold text-xl">
-        Combined Mathematics - Ruwan Darshana
+        {{ `${tutor.f_name}  ${tutor.l_name}` }}
       </h2>
 
       <div class="lesson-pack-store">
         <BrowseLessonPack
-          :details="{ image: '/lesson-pack-1.jpg', name: '2023 - Combined Mathematics (Theory)', month: 'January', price: '2000.00' }"
+          v-for="lessonPack in getLessonPacksByTutor(tutor)" :key="lessonPack.id" :lesson-pack="lessonPack"
           @on-details-sidebar-open="activateLessonPackSidebar"
         />
-
-        <BrowseLessonPack
-          :details="{ image: '/lesson-pack-1.jpg', name: '2023 - Combined Mathematics (Theory)', month: 'January', price: '2000.00' }"
-        />
-
-        <BrowseLessonPack
-          :details="{ image: '/lesson-pack-1.jpg', name: '2023 - Combined Mathematics (Theory)', month: 'January', price: '2000.00' }"
-        />
-
-        <BrowseLessonPack
-          :details="{ image: '/lesson-pack-1.jpg', name: '2023 - Combined Mathematics (Theory)', month: 'January', price: '2000.00' }"
-        />
-
-        <BrowseLessonPack
-          :details="{ image: '/lesson-pack-1.jpg', name: '2023 - Combined Mathematics (Theory)', month: 'January', price: '2000.00' }"
-        />
       </div>
     </div>
 
-    <div>
-      <h2 class="font-semibold text-xl">
-        Physics - Nilantha Jayasuriya
-      </h2>
-
-      <div class="lesson-pack-store">
-        <BrowseLessonPack
-          :details="{ image: '/lesson-pack-3.jpg', name: '2023 - Combined Mathematics (Theory)', month: 'January', price: '2000.00' }"
-        />
-
-        <BrowseLessonPack
-          :details="{ image: '/lesson-pack-3.jpg', name: '2023 - Combined Mathematics (Theory)', month: 'January', price: '2000.00' }"
-        />
-
-        <BrowseLessonPack
-          :details="{ image: '/lesson-pack-3.jpg', name: '2023 - Combined Mathematics (Theory)', month: 'January', price: '2000.00' }"
-        />
-
-        <BrowseLessonPack
-          :details="{ image: '/lesson-pack-3.jpg', name: '2023 - Combined Mathematics (Theory)', month: 'January', price: '2000.00' }"
-        />
-
-        <BrowseLessonPack
-          :details="{ image: '/lesson-pack-3.jpg', name: '2023 - Combined Mathematics (Theory)', month: 'January', price: '2000.00' }"
-        />
-      </div>
-    </div>
-
-    <div>
-      <h2 class="font-semibold text-xl">
-        Chemistry - Nirandhika Jayawardana
-      </h2>
-
-      <div class="lesson-pack-store">
-        <BrowseLessonPack
-          :details="{ image: '/lesson-pack-2.jpg', name: '2023 - Combined Mathematics (Theory)', month: 'January', price: '2000.00' }"
-        />
-
-        <BrowseLessonPack
-          :details="{ image: '/lesson-pack-2.jpg', name: '2023 - Combined Mathematics (Theory)', month: 'January', price: '2000.00' }"
-        />
-
-        <BrowseLessonPack
-          :details="{ image: '/lesson-pack-2.jpg', name: '2023 - Combined Mathematics (Theory)', month: 'January', price: '2000.00' }"
-        />
-
-        <BrowseLessonPack
-          :details="{ image: '/lesson-pack-2.jpg', name: '2023 - Combined Mathematics (Theory)', month: 'January', price: '2000.00' }"
-        />
-
-        <BrowseLessonPack
-          :details="{ image: '/lesson-pack-2.jpg', name: '2023 - Combined Mathematics (Theory)', month: 'January', price: '2000.00' }"
-        />
-      </div>
-    </div>
     <LessonPackStoreSidebar />
   </div>
 </template>
