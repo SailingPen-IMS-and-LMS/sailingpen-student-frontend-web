@@ -15,3 +15,18 @@ export interface LessonPack {
 }
 
 export type AvailableToBuyLessonPacksResponse = LessonPack[]
+export interface LessonPackDetails extends LessonPack {
+  resources: {
+    name: string
+    id: number
+    thumbnail_url: null | string
+    type: ResourceType
+  }[]
+
+}
+
+export enum ResourceType {
+  VIDEO = 'video',
+  IMAGE = 'image',
+  DOCUMENT = 'document',
+}

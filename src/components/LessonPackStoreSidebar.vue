@@ -1,9 +1,38 @@
 <script setup lang="ts">
 import { NButton } from '@nethren-ui/vue'
+import { ref, watch } from 'vue'
 import StoreViewCard from './StoreViewCard.vue'
 import { useLessonPackSidebar } from '~/composables'
+import type { LessonPackDetails } from '~/types/api-types/lesson-packs-types'
+import { ResourceType } from '~/types/api-types/lesson-packs-types'
+import { api } from '~/api'
+import ISvgSpinners180RingWithBg from '~icons/svg-spinners/180-ring-with-bg'
+import EmojioneBackhandIndexPointingRightMediumSkinTone from '~icons/emojione/backhand-index-pointing-right-medium-skin-tone'
 
-const { closeLessonPackSidebar, isLessonPackSidebarOpen } = useLessonPackSidebar()
+const { closeLessonPackSidebar, isLessonPackSidebarOpen, lessonPackId } = useLessonPackSidebar()
+
+const lessonPackDetails = ref<LessonPackDetails | undefined>(undefined)
+const isLessonPackDetailsLoading = ref(true)
+watch(lessonPackId, async (newLessonPackId) => {
+  if (newLessonPackId !== '') {
+    isLessonPackDetailsLoading.value = true
+    lessonPackDetails.value = await api.lessonPacks.getMoreDetails(newLessonPackId)
+    isLessonPackDetailsLoading.value = false
+  }
+
+  console.log(newLessonPackId)
+})
+
+function getLessonPackResourceByType(type: ResourceType) {
+  if (lessonPackDetails.value) {
+    return lessonPackDetails.value.resources.filter((r) => {
+      if (r.type === type)
+        return true
+      else return false
+    })
+  }
+  return [] as LessonPackDetails['resources']
+}
 </script>
 
 <template>
@@ -13,44 +42,85 @@ const { closeLessonPackSidebar, isLessonPackSidebarOpen } = useLessonPackSidebar
         <button class="absolute top-4 left-4 cursor-pointer text-xl" @click="closeLessonPackSidebar">
           <ic-round-close />
         </button>
-        <p class="font-semibold text-lg p-[1rem] mt-[1.5rem] mb-[0.5rem]">
-          2023 - Biology Theory - March
-        </p>
-        <p class="px-[1.5rem]">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus beatae ut, earum laudantium,
-          odit dolore ea ab cum, dolor rem velit fugit assumenda voluptates. Aspernatur sint qui asperiores aperiam
-          perspiciatis.
-        </p>
 
-        <StoreViewCard
-          :details="{
-            image: '/store-view-1.jfif',
-            heading: '2023 - Theory New Class 2023/03/02',
-            description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus beatae ut, earum laudantium odit dolore ea ab cum, dolor rem velit fugit',
-          }"
-        />
+        <template v-if="!isLessonPackDetailsLoading && lessonPackDetails">
+          <p class="font-bold text-xl pt-[1rem] px-[1rem] mt-[1.8rem] mb-[0.5rem]">
+            {{ lessonPackDetails.name }}
+          </p>
+          <p class="px-[1.5rem]">
+            {{ lessonPackDetails.description }}
+          </p>
 
-        <StoreViewCard
-          :details="{
-            image: '/store-view-1.jfif',
-            heading: '2023 - Theory New Class 2023/03/02',
-            description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus beatae ut, earum laudantium odit dolore ea ab cum, dolor rem velit fugit',
-          }"
-        />
+          <div class="flex gap-0.5 items-center px-6">
+            <EmojioneBackhandIndexPointingRightMediumSkinTone class="text-[1.5rem] font-semibold pt-2" />
+            <h3 class="text-lg font-semibold px-1 pt-2">
+              Videos
+            </h3>
+          </div>
 
-        <StoreViewCard
-          :details="{
-            image: '/store-view-1.jfif',
-            heading: '2023 - Theory New Class 2023/03/02',
-            description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus beatae ut, earum laudantium odit dolore ea ab cum, dolor rem velit fugit',
-          }"
-        />
+          <p v-if="getLessonPackResourceByType(ResourceType.VIDEO).length === 0">
+            No Videos are available in this Lesson Pack
+          </p>
+          <div class="store-view-card-grid">
+            <StoreViewCard
+              v-for="resource in getLessonPackResourceByType(ResourceType.VIDEO)"
+              :key="resource.id" :details="resource"
+            />
+          </div>
 
-        <div class="px-[5rem] py-[1rem] flex justify-between">
-          <NButton>Buy Now</NButton>
-          <NButton>Add to cart</NButton>
+          <div class="flex gap-0.5 items-center px-6">
+            <EmojioneBackhandIndexPointingRightMediumSkinTone class="text-[1.5rem] font-semibold pt-2" />
+            <h3 class="text-lg font-semibold px-1 pt-2">
+              Documents
+            </h3>
+          </div>
+          <p v-if="getLessonPackResourceByType(ResourceType.DOCUMENT).length === 0" class="pl-10 pr-5">
+            No Documents are available in this Lesson Pack
+          </p>
+          <div class="flex flex-col gap-4">
+            <StoreViewCard
+              v-for="resource in getLessonPackResourceByType(ResourceType.DOCUMENT)"
+              :key="resource.id" :details="resource"
+            />
+          </div>
+
+          <div class="flex gap-0.5 items-center px-6">
+            <EmojioneBackhandIndexPointingRightMediumSkinTone class="text-[1.5rem] font-semibold pt-2" />
+            <h3 class="text-lg font-semibold px-1 pt-2">
+              Images
+            </h3>
+          </div>
+          <p v-if="getLessonPackResourceByType(ResourceType.IMAGE).length === 0" class="pl-10 pr-5">
+            No Images are available in this Lesson Pack
+          </p>
+          <div class="flex flex-col gap-4">
+            <StoreViewCard
+              v-for="resource in getLessonPackResourceByType(ResourceType.IMAGE)"
+              :key="resource.id" :details="resource"
+            />
+          </div>
+
+          <div class="px-[5rem] py-[1rem] flex justify-between">
+            <NButton>Buy Now</NButton>
+            <NButton>Add to cart</NButton>
+          </div>
+        </template>
+        <div v-else-if="!isLessonPackDetailsLoading && !lessonPackDetails">
+          <p>Sorry Lesson Pack is invalid.</p>
+        </div>
+
+        <div v-else class="absolute top-15/32 left-15/32 -translate-[-50%,-50%]">
+          <ISvgSpinners180RingWithBg class="text-[3.5rem] text-[rgba(0,0,0,0.4)]" />
         </div>
       </aside>
     </Transition>
   </Teleport>
 </template>
+
+<style lang="scss" scoped>
+    .store-view-card-grid{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.01rem;
+    }
+</style>

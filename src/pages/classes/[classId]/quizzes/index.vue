@@ -2,6 +2,7 @@
 import { NButton } from '@nethren-ui/vue'
 import Quiz from '~/components/Quiz.vue'
 import Accordion from '~/components/Accordion.vue'
+import UpcomingHistoryQuiz from '~/components/UpcomingHistoryQuiz.vue'
 
 const route = useRoute()
 console.log(route.params)
@@ -42,12 +43,7 @@ console.log(route.params)
           <Accordion
             :details="{ title: 'Upcoming Quizzes' }"
           >
-            <ul>
-              <li>Permutations and Combination Quiz 10</li>
-              <li>Permutations and Combination Quiz 11</li>
-              <li>Motion Quiz 12</li>
-              <li>Trigonometry Quiz 3</li>
-            </ul>
+            <UpcomingHistoryQuiz :details="{ heading: 'Permutation and Combination', date: '2023/11/02', description: '40 MCQ' }" />
           </Accordion>
 
           <Accordion
