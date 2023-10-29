@@ -38,7 +38,7 @@ onMounted(async () => {
 
 <template>
   <div class="browse-lesson-pack-page relative">
-    <template v-if="!isLessonPacksLoading">
+    <template v-if="!isLessonPacksLoading && tutors.length > 0">
       <div v-for="tutor in tutors" :key="`${tutor.f_name}  ${tutor.l_name}`">
         <h2 class="font-semibold text-xl">
           {{ `${tutor.f_name}  ${tutor.l_name}` }}
@@ -52,6 +52,13 @@ onMounted(async () => {
         </div>
       </div>
     </template>
+    <div v-else-if="!isLessonPacksLoading && tutors.length === 0" class="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+      <div class="flex flex-col items-center justify-center gap-[0.5rem]">
+        <p class="text-[1.5rem] text-center">
+          You already have access for all lesson packs <br> (Or there aren't any lesson packs available from your tutors.)
+        </p>
+      </div>
+    </div>
     <div v-else class="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
       <div class="flex flex-col items-center justify-center gap-[0.5rem]">
         <ISvgSpinners180RingWithBg class="text-[3.5rem] text-[rgba(0,0,0,0.4)]" />
