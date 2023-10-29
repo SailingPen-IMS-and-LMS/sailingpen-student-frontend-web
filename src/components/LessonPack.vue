@@ -20,7 +20,7 @@ defineProps<MyLessonPackProps>()
       borderRadius: '0.5rem',
     }
     "
-    :to="`/lesson-packs/${details.name}`"
+    :to="`/lesson-packs/${details.id}`"
   >
     <div class="mr-4">
       <div class="m-6">
