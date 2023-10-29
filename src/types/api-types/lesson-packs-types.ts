@@ -58,3 +58,33 @@ export type BoughtLessonPacksResponse = {
     }
   }
 }[]
+
+export interface LessonPackResources {
+  id: string
+  name: string
+  description: string
+  price: string
+  created_at: string
+  updated_at: string
+  tutor_id: string
+  resources: {
+    id: number
+    name: string
+    url: string
+    thumbnail_url: null | string
+    type: ResourceType
+    folder_id: number
+  }[]
+
+  tutor: {
+    user: {
+      f_name: string
+      l_name: string
+      avatar: string
+    }
+
+    subject: {
+      subject_name: string
+    }
+  }
+}

@@ -1,41 +1,93 @@
 <script setup lang="ts">
+import { computed, onMounted, ref } from 'vue'
 import PageHeading from '~/components/common/PageHeading.vue'
-import Attachment from '~/components/attachment.vue'
+import { type LessonPackResources, ResourceType } from '~/types/api-types/lesson-packs-types'
+import { api } from '~/api'
+
+// import Attachment from '~/components/attachment.vue'
 import VideoQuestion from '~/components/VideoQuestion.vue'
 import OtherVideo from '~/components/OtherVideo.vue'
 
 const route = useRoute()
+const lessonPackId = route.params.id as string | undefined
+
+if (!lessonPackId) {
+  alert('Lesson Pack is invalid.')
+  throw new Error('Lesson Pack Id is invalid.')
+}
+
+const lessonPackResources = ref<LessonPackResources | undefined>(undefined)
+const isResourcesLoading = ref(true)
+const lessonPackVideos = computed(() => {
+  return lessonPackResources.value?.resources.filter((resource) => {
+    if (resource.type === ResourceType.VIDEO)
+      return true
+
+    return false
+  })
+})
+
+const currentVideoId = ref(0)
+const currentVideo = computed(() => {
+  if (currentVideoId.value) {
+    return lessonPackVideos.value?.find((lpv) => {
+      return lpv.id === currentVideoId.value
+    })
+  }
+  return undefined
+})
+onMounted(async () => {
+  isResourcesLoading.value = true
+  lessonPackResources.value = await api.lessonPacks.getLessonPackResources(lessonPackId)
+  isResourcesLoading.value = false
+  if (lessonPackVideos.value && lessonPackVideos.value.length > 0)
+    currentVideoId.value = lessonPackVideos.value[0].id
+  console.log(lessonPackResources.value)
+  //   const currentVideoId = computed(() => lessonPackVideos.value ? (lessonPackVideos.value.length > 0 ? lessonPackVideos.value[0].id : undefined) : undefined)
+})
 </script>
 
 <template>
   <div class="lesson-pack-page">
     <PageHeading class="">
-      {{ route.params.name }}
+      {{
+        lessonPackResources ? lessonPackResources.name : "Lesson Pack is not valid."
+      }}
     </PageHeading>
-    <div class="player-grid">
+    <div v-if="lessonPackResources && currentVideo" class="player-grid">
       <div
         class="player"
         :style="{
-          backgroundImage: `linear-gradient(to left, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(/video-1.png)`,
+          backgroundImage: `linear-gradient(to left, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${currentVideo.thumbnail_url})`,
           backgroundColor: 'rgba(0, 0, 0, 0.6)',
           backgroundRepeat: 'no-repeat',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           borderRadius: '0.5rem',
         }"
-      />
+      >
+        <iframe
+          class="rounded-lg"
+          :src="currentVideo.url"
+          style="border: none"
+          height="506.25"
+          width="900"
+          allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+          allowfullscreen="true"
+        />
+      </div>
 
       <div class="video-info">
         <h2 class="text-xl font-semibold">
-          2023 Applied Maths Introduction class Gampaha
+          {{ currentVideo.name }}
         </h2>
         <div class="flex gap-4 my-4">
-          <img src="/tutor-1.jpg" class="user-profile" alt="">
+          <img :src="lessonPackResources.tutor.user.avatar" class="user-profile" alt="">
           <div class="">
             <p class="font-semibold text-lg">
-              Ruwan Darshana
+              {{ `${lessonPackResources.tutor.user.f_name} ${lessonPackResources.tutor.user.l_name}` }}
             </p>
-            <p>Combined Mathematics</p>
+            <p>{{ lessonPackResources.tutor.subject.subject_name }}</p>
           </div>
         </div>
 
@@ -50,11 +102,11 @@ const route = useRoute()
             :details="{ attachmentName: 'Differentiation Introduction', image: '/notes-1.jpg', tutorialNumber: 2 }"
           />
         </div>
-        <p class="text-justify">
+        <!-- <p class="text-justify">
           Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
           standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
           a type specimen book.
-        </p>
+        </p> -->
 
         <div class="flex gap-4">
           <img src="/student-profile.jpg" class="user-profile mt-4" alt="">
@@ -83,23 +135,15 @@ const route = useRoute()
 
       <div class="other-videos">
         <h3 class="text-l font-semibold mb-4">
-          Watch next lessons
+          All videos in the Lesson Pack
         </h3>
         <div>
           <OtherVideo
-            :details="{ image: '/video-2.jpg', videoName: 'Differentiation Graphs - Part 1', time: '2:45:33', date: '2023/05/23' }"
-          />
-          <OtherVideo
-            :details="{ image: '/video-3.jpg', videoName: 'Differentiation Graphs - Part 2', time: '2:45:33', date: '2023/05/23' }"
-          />
-          <OtherVideo
-            :details="{ image: '/video-4.jpg', videoName: 'Calculus - Part 1', time: '2:45:33', date: '2023/05/23' }"
-          />
-          <OtherVideo
-            :details="{ image: '/video-5.jpg', videoName: 'Calculus - Part 2', time: '2:45:33', date: '2023/05/23' }"
-          />
-          <OtherVideo
-            :details="{ image: '/video-6.jpg', videoName: 'Integration', time: '2:45:33', date: '2023/05/23' }"
+            v-for="resource in lessonPackResources.resources"
+            :key="resource.id" :current-video-id="currentVideoId || 0" :details="resource"
+            @click="() => {
+              currentVideoId = resource.id
+            }"
           />
         </div>
       </div>
