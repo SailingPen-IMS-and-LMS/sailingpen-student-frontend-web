@@ -18,6 +18,8 @@ declare module 'vue' {
     IcRoundDashboard: typeof import('~icons/ic/round-dashboard')['default']
     IcSharpDelete: typeof import('~icons/ic/sharp-delete')['default']
     IcSharpMenuBook: typeof import('~icons/ic/sharp-menu-book')['default']
+    LessonPackDocument: typeof import('./components/LessonPackDocument.vue')['default']
+    LessonPackDocumentOrImage: typeof import('./components/LessonPackDocumentOrImage.vue')['default']
     LessonPackStoreSidebar: typeof import('./components/LessonPackStoreSidebar.vue')['default']
     MaterialSymbolsDashboard: typeof import('~icons/material-symbols/dashboard')['default']
     MaterialSymbolsEditDocumentRounded: typeof import('~icons/material-symbols/edit-document-rounded')['default']

@@ -27,6 +27,24 @@ const lessonPackVideos = computed(() => {
   })
 })
 
+const lessonPackDocuments = computed(() => {
+  return lessonPackResources.value?.resources.filter((resource) => {
+    if (resource.type === ResourceType.DOCUMENT)
+      return true
+
+    return false
+  })
+})
+
+const lessonPackImages = computed(() => {
+  return lessonPackResources.value?.resources.filter((resource) => {
+    if (resource.type === ResourceType.IMAGE)
+      return true
+
+    return false
+  })
+})
+
 const currentVideoId = ref(0)
 const currentVideo = computed(() => {
   if (currentVideoId.value) {
@@ -134,16 +152,36 @@ onMounted(async () => {
       </div>
 
       <div class="other-videos">
-        <h3 class="text-l font-semibold mb-4">
+        <h2 class="text-lg font-semibold mb-4">
           All videos in the Lesson Pack
-        </h3>
+        </h2>
         <div>
           <OtherVideo
-            v-for="resource in lessonPackResources.resources"
+            v-for="resource in lessonPackVideos"
             :key="resource.id" :current-video-id="currentVideoId || 0" :details="resource"
             @click="() => {
               currentVideoId = resource.id
             }"
+          />
+        </div>
+
+        <h2 v-if="lessonPackDocuments && lessonPackDocuments?.length > 0" class="text-lg font-semibold mb-4">
+          All documents in the Lesson Pack
+        </h2>
+        <div>
+          <LessonPackDocumentOrImage
+            v-for="resource in lessonPackDocuments"
+            :key="resource.id" :details="resource"
+          />
+        </div>
+
+        <h2 v-if="lessonPackImages && lessonPackImages?.length > 0" class="text-lg font-semibold mb-4">
+          All images in the Lesson Pack
+        </h2>
+        <div>
+          <LessonPackDocumentOrImage
+            v-for="resource in lessonPackImages"
+            :key="resource.id" :details="resource"
           />
         </div>
       </div>
