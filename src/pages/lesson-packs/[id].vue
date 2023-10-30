@@ -7,6 +7,7 @@ import { api } from '~/api'
 // import Attachment from '~/components/attachment.vue'
 import VideoQuestion from '~/components/VideoQuestion.vue'
 import OtherVideo from '~/components/OtherVideo.vue'
+import LessonPackDocumentOrImage from '~/components/LessonPackDocumentOrImage.vue'
 
 const route = useRoute()
 const lessonPackId = route.params.id as string | undefined

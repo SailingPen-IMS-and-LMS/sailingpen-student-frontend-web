@@ -5,7 +5,8 @@ export async function enrolled() {
   try {
     const result = await authenticatedInstance().get<EnrolledClasses>('/tution-classes/enrolled')
     if (result.status === 200)
-      return result.data
+      console.log(result.data)
+    return result.data
   }
   catch (error) {
     console.log(error)
