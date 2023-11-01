@@ -1,4 +1,4 @@
-export interface GetAnnouncements {
+export interface Announcement {
   id: number
   title: string
   content: string
@@ -7,3 +7,5 @@ export interface GetAnnouncements {
     class_name: string
   }
 }
+
+export type Announcements = Announcement[]

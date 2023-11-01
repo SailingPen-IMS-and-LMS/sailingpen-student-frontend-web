@@ -6,6 +6,7 @@ import ISvgSpinners180Ring from '~icons/svg-spinners/180-ring'
 import type { WeeklySessions } from '~/types'
 import { api } from '~/api'
 import { getDaysInCurrentMonth } from '~/utils'
+import WeeklySessionCard from '~/components/WeeklySessionCard.vue'
 
 const route = useRoute()
 const classId = route.params.classId as string
