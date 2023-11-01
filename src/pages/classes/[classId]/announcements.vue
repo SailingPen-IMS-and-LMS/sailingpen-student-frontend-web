@@ -1,38 +1,35 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import type { AnnouncementInfoCard } from '~/types'
+import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+import { api } from '~/api'
 import AnnouncementCard from '~/components/AnnouncementCard.vue'
+import type { Announcements } from '~/types/api-types/announcements-types'
 
 const filterDate = ref('')
+const route = useRoute()
+const classId = route.params.classId as string
+const announcements = ref<Announcements>([])
+const isAnnouncementsLoading = ref(true)
+async function getAnnouncementsByClass() {
+  isAnnouncementsLoading.value = true
+  const results = await api.announcements.getAnnouncements(classId)
+  announcements.value = results
+  isAnnouncementsLoading.value = false
+}
 
-onMounted(() => {
-  const today = new Date()
-  filterDate.value = today.toISOString().slice(0, 10)
+onMounted(async () => {
+  await getAnnouncementsByClass()
+  //   isAnnouncementsLoading.value = true
+  //   const today = new Date()
+  //   filterDate.value = today.toISOString().slice(0, 10)
+
+  //   const results = await api.announcements.getAnnouncements()
+  //   announcements.value = results
+  //   announcements.value.forEach(() => {
+
+//   })
+//   isAnnouncementsLoading.value = false
 })
-
-const announcementInfoCards: AnnouncementInfoCard[] = [
-  {
-    id: 1,
-    title: 'Class rescheduled',
-    description: 'The class scheduled for 10th March has been rescheduled to 12th March',
-    date_time: '2023-3-10 10:00 A.M.',
-    is_pinned: true,
-  },
-  {
-    id: 2,
-    title: 'Class cancellation',
-    description: 'The class scheduled for 10th March has been cancelled',
-    date_time: '2023-3-8 10:00 A.M.',
-    is_pinned: true,
-  },
-  {
-    id: 3,
-    title: 'Class registration',
-    description: 'Registration for the combined mathematics paper class for 2024 A/L has been open',
-    date_time: '2023-3-5 10:00 A.M.',
-    is_pinned: false,
-  },
-]
 </script>
 
 <template>
@@ -45,9 +42,7 @@ const announcementInfoCards: AnnouncementInfoCard[] = [
 
     <div class="announcement-cards">
       <AnnouncementCard
-        v-for="announcementInfoCard in announcementInfoCards"
-        :key="announcementInfoCard.id"
-        :details="announcementInfoCard"
+        v-for="announcement in announcements" :key="announcement.id" :details="announcement"
       />
     </div>
   </div>

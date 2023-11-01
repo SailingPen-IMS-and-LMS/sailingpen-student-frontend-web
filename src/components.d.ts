@@ -40,7 +40,6 @@ declare module 'vue' {
     MaterialSymbolsToggleOffOutline: typeof import('~icons/material-symbols/toggle-off-outline')['default']
     MaterialSymbolsTrophy: typeof import('~icons/material-symbols/trophy')['default']
     MdiCards: typeof import('~icons/mdi/cards')['default']
-    MdiHeadQuestion: typeof import('~icons/mdi/head-question')['default']
     MdiHelpCircle: typeof import('~icons/mdi/help-circle')['default']
     MyFlashCard: typeof import('./components/MyFlashCard.vue')['default']
     NotEnrolledClassCard: typeof import('./components/NotEnrolledClassCard.vue')['default']
