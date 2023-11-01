@@ -1,13 +1,30 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { api } from '~/api'
 import type { AnnouncementInfoCard } from '~/types'
 import AnnouncementCard from '~/components/AnnouncementCard.vue'
+import type { GetAnnouncements } from '~/types/api-types/announcements-types'
 
 const filterDate = ref('')
+const announcements = ref<GetAnnouncements>([])
+const isAnnouncementsLoading = ref(true)
+function getAnnouncementsByClass() {
+  return announcements.value(() => {
+
+  })
+}
 
 onMounted(() => {
+  isAnnouncementsLoading.value = true
   const today = new Date()
   filterDate.value = today.toISOString().slice(0, 10)
+
+  const results = await api.announcements.getAnnouncements()
+  announcements.value = results
+  announcements.value.forEach(() => {
+
+  })
+  isAnnouncementsLoading.value = false
 })
 
 const announcementInfoCards: AnnouncementInfoCard[] = [
@@ -45,9 +62,7 @@ const announcementInfoCards: AnnouncementInfoCard[] = [
 
     <div class="announcement-cards">
       <AnnouncementCard
-        v-for="announcementInfoCard in announcementInfoCards"
-        :key="announcementInfoCard.id"
-        :details="announcementInfoCard"
+        v-for="announcementInfoCard in getAnnouncementsByClass()" :key="announcements.id"
       />
     </div>
   </div>
