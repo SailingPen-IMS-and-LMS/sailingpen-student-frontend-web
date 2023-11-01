@@ -7,6 +7,7 @@ import { api } from '~/api'
 // import Attachment from '~/components/attachment.vue'
 import VideoQuestion from '~/components/VideoQuestion.vue'
 import OtherVideo from '~/components/OtherVideo.vue'
+import LessonPackDocumentOrImage from '~/components/LessonPackDocumentOrImage.vue'
 
 const route = useRoute()
 const lessonPackId = route.params.id as string | undefined
@@ -112,19 +113,6 @@ onMounted(async () => {
         <p class="text-l font-semibold">
           The notes relevant to the lesson
         </p>
-        <div class="lecture-notes my-4 ">
-          <Attachment
-            :details="{ attachmentName: 'Differentiation Introduction', image: '/notes-1.jpg', tutorialNumber: 1 }"
-          />
-          <Attachment
-            :details="{ attachmentName: 'Differentiation Introduction', image: '/notes-1.jpg', tutorialNumber: 2 }"
-          />
-        </div>
-        <!-- <p class="text-justify">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-          a type specimen book.
-        </p> -->
 
         <div class="flex gap-4">
           <img src="/student-profile.jpg" class="user-profile mt-4" alt="">

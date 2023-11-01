@@ -30,7 +30,7 @@ const documentOrImageName = computed(() => {
       <p class="font-semibold">
         {{ documentOrImageName }}
       </p>
-      <a :href="details.url" download><NButton mode="text">
+      <a :href="details.url" download target="_blank"><NButton mode="text">
         <template #leftIcon><IIcOutlineFileDownload class="text-[1.25rem]" /></template>
       </NButton></a>
     </div>
