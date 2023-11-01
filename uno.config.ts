@@ -6,7 +6,7 @@ import {
 } from 'unocss'
 
 export default defineConfig({
-  safelist: ['block'],
+  safelist: ['block', 'bg-[rgba(0,0,0,0.1)]'],
   presets: [
     presetUno(),
   ],

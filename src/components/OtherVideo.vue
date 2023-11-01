@@ -1,22 +1,35 @@
 <script setup lang="ts">
-import type { OtherVideosDetails } from '~/types'
+import { computed, toRefs } from 'vue'
+import type { LessonPackResources } from '~/types/api-types/lesson-packs-types'
 
 interface OtherVideoProps {
-  details: OtherVideosDetails
+  details: LessonPackResources['resources'][number]
+  currentVideoId: number
 }
 
-defineProps<OtherVideoProps>()
+const props = defineProps<OtherVideoProps>()
+const { details } = toRefs(props)
+const videoName = computed(() => {
+  const nameParts = details.value.name.split('.')
+  const namePartsWithoutExtension = nameParts.slice(0, nameParts.length - 1)
+  return namePartsWithoutExtension.join('.')
+})
 </script>
 
 <template>
-  <div class="flex gap-2 my-3 items-center">
-    <img :src="details.image" alt="" class="w-50 h-25 rounded-xl">
+  <div
+    class="flex gap-2 my-3 items-center p-2 rounded-md cursor-pointer hover:bg-[var(--n-color-primary-100)]" :class="[
+      details.id === currentVideoId ? 'bg-[var(--n-color-primary-200)]' : '',
+    ]"
+    style="transition: all 0.3s ease-in-out;"
+  >
+    <img :src="details.thumbnail_url || ''" alt="" class="w-[180px] h-[110px] rounded-md">
     <div>
       <p class="font-semibold">
-        {{ details.videoName }}
+        {{ videoName }}
       </p>
-      <p>{{ details.date }}</p>
-      <p>{{ details.time }}</p>
+      <!-- <p>{{ details.date }}</p>
+      <p>{{ details.time }}</p> -->
     </div>
   </div>
 </template>
