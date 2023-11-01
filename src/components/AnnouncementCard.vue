@@ -1,12 +1,18 @@
 <script setup lang="ts">
-import type { AnnouncementInfoCard } from '~/types'
-import RiPushpinLine from '~icons/ri/pushpin-line'
+import { toRefs } from 'vue'
+import { format, parseISO } from 'date-fns'
+import type { Announcement } from '~/types/api-types/announcements-types'
 
-defineProps<AnnouncementInfoCardsProps>()
-
-interface AnnouncementInfoCardsProps {
-  details: AnnouncementInfoCard
+interface AnnouncementCardsProps {
+  details: Announcement
 }
+
+const props = defineProps<AnnouncementCardsProps>()
+const { details } = toRefs(props)
+
+const announcementDate = computed(() => {
+  return format(parseISO(details.value.created_at), 'do \'of\' MMMM, yyyy \'at\' h:mm a')
+})
 </script>
 
 <template>
@@ -21,14 +27,14 @@ interface AnnouncementInfoCardsProps {
       </h3>
       <div class="flex">
         <h3 class="flex ann-date my-2 items-center text-gray-400">
-          {{ details.date_time }}
+          {{ announcementDate }}
         </h3>
-        <RiPushpinLine v-if="details.is_pinned" class="ann-pin w-6 h-6 m-4" />
-        <div v-else class="w-6 h-6 m-4" />
+        <!-- <RiPushpinLine v-if="details.is_pinned" class="ann-pin w-6 h-6 m-4" />
+        <div v-else class="w-6 h-6 m-4" /> -->
       </div>
     </div>
     <div class="ann-description px-5">
-      {{ details.description }}
+      {{ details.content }}
     </div>
   </div>
 </template>

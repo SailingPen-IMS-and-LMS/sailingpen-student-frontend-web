@@ -7,6 +7,7 @@ import { api } from '~/api'
 // import Attachment from '~/components/attachment.vue'
 import VideoQuestion from '~/components/VideoQuestion.vue'
 import OtherVideo from '~/components/OtherVideo.vue'
+import LessonPackDocumentOrImage from '~/components/LessonPackDocumentOrImage.vue'
 
 const route = useRoute()
 const lessonPackId = route.params.id as string | undefined
@@ -21,6 +22,24 @@ const isResourcesLoading = ref(true)
 const lessonPackVideos = computed(() => {
   return lessonPackResources.value?.resources.filter((resource) => {
     if (resource.type === ResourceType.VIDEO)
+      return true
+
+    return false
+  })
+})
+
+const lessonPackDocuments = computed(() => {
+  return lessonPackResources.value?.resources.filter((resource) => {
+    if (resource.type === ResourceType.DOCUMENT)
+      return true
+
+    return false
+  })
+})
+
+const lessonPackImages = computed(() => {
+  return lessonPackResources.value?.resources.filter((resource) => {
+    if (resource.type === ResourceType.IMAGE)
       return true
 
     return false
@@ -94,19 +113,6 @@ onMounted(async () => {
         <p class="text-l font-semibold">
           The notes relevant to the lesson
         </p>
-        <div class="lecture-notes my-4 ">
-          <Attachment
-            :details="{ attachmentName: 'Differentiation Introduction', image: '/notes-1.jpg', tutorialNumber: 1 }"
-          />
-          <Attachment
-            :details="{ attachmentName: 'Differentiation Introduction', image: '/notes-1.jpg', tutorialNumber: 2 }"
-          />
-        </div>
-        <!-- <p class="text-justify">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-          standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-          a type specimen book.
-        </p> -->
 
         <div class="flex gap-4">
           <img src="/student-profile.jpg" class="user-profile mt-4" alt="">
@@ -134,16 +140,36 @@ onMounted(async () => {
       </div>
 
       <div class="other-videos">
-        <h3 class="text-l font-semibold mb-4">
+        <h2 class="text-lg font-semibold mb-4">
           All videos in the Lesson Pack
-        </h3>
+        </h2>
         <div>
           <OtherVideo
-            v-for="resource in lessonPackResources.resources"
+            v-for="resource in lessonPackVideos"
             :key="resource.id" :current-video-id="currentVideoId || 0" :details="resource"
             @click="() => {
               currentVideoId = resource.id
             }"
+          />
+        </div>
+
+        <h2 v-if="lessonPackDocuments && lessonPackDocuments?.length > 0" class="text-lg font-semibold mb-4">
+          All documents in the Lesson Pack
+        </h2>
+        <div>
+          <LessonPackDocumentOrImage
+            v-for="resource in lessonPackDocuments"
+            :key="resource.id" :details="resource"
+          />
+        </div>
+
+        <h2 v-if="lessonPackImages && lessonPackImages?.length > 0" class="text-lg font-semibold mb-4">
+          All images in the Lesson Pack
+        </h2>
+        <div>
+          <LessonPackDocumentOrImage
+            v-for="resource in lessonPackImages"
+            :key="resource.id" :details="resource"
           />
         </div>
       </div>
