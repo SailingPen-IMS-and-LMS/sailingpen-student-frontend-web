@@ -22,6 +22,8 @@ declare module 'vue' {
     ExamRank: typeof import('./components/ExamRank.vue')['default']
     Fa6SolidUsersLine: typeof import('~icons/fa6-solid/users-line')['default']
     FlashCard: typeof import('./components/FlashCard.vue')['default']
+    HealthiconsIExamQualificationOutline: typeof import('~icons/healthicons/i-exam-qualification-outline')['default']
+    IcBaselinePlus: typeof import('~icons/ic/baseline-plus')['default']
     IconamoonMenuBurgerHorizontalBold: typeof import('~icons/iconamoon/menu-burger-horizontal-bold')['default']
     IcRoundArrowBack: typeof import('~icons/ic/round-arrow-back')['default']
     IcRoundArrowForward: typeof import('~icons/ic/round-arrow-forward')['default']
@@ -40,6 +42,7 @@ declare module 'vue' {
     MaterialSymbolsToggleOffOutline: typeof import('~icons/material-symbols/toggle-off-outline')['default']
     MaterialSymbolsTrophy: typeof import('~icons/material-symbols/trophy')['default']
     MdiCards: typeof import('~icons/mdi/cards')['default']
+    MdiHeadQuestion: typeof import('~icons/mdi/head-question')['default']
     MdiHelpCircle: typeof import('~icons/mdi/help-circle')['default']
     MyFlashCard: typeof import('./components/MyFlashCard.vue')['default']
     NotEnrolledClassCard: typeof import('./components/NotEnrolledClassCard.vue')['default']
@@ -51,7 +54,6 @@ declare module 'vue' {
     Quiz: typeof import('./components/Quiz.vue')['default']
     QuizLeaderBoard: typeof import('./components/QuizLeaderBoard.vue')['default']
     QuizNavigation: typeof import('./components/QuizNavigation.vue')['default']
-    ResourceCard: typeof import('./components/ResourceCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SidebarLink: typeof import('./components/SidebarLink.vue')['default']
@@ -65,6 +67,5 @@ declare module 'vue' {
     VideoQuestion: typeof import('./components/VideoQuestion.vue')['default']
     VideoThumbnail: typeof import('./components/VideoThumbnail.vue')['default']
     WeeklySessionCard: typeof import('./components/WeeklySessionCard.vue')['default']
-    ZondiconsSend: typeof import('~icons/zondicons/send')['default']
   }
 }
