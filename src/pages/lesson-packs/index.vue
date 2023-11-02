@@ -71,7 +71,7 @@ onMounted(async () => {
     </template>
     <div v-else class="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
       <div class="flex flex-col items-center justify-center gap-[0.5rem]">
-        <ISvgSpinners180RingWithBg class="text-[3.5rem] text-[rgba(0,0,0,0.4)]" />
+        <!-- <ISvgSpinners180RingWithBg class="text-[3.5rem] text-[rgba(0,0,0,0.4)]" /> -->
         <p class="text-[1.5rem]">
           Please wait...
         </p>
